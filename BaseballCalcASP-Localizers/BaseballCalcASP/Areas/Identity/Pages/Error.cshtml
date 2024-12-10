@@ -1,0 +1,23 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = Localizer["Error"];
+}
+
+<h1 class="text-danger">@Localizer["Error"].</h1>
+<h2 class="text-danger">@Localizer["ErrorText"]</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>@Localizer["RequestID"]:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>@Localizer["DevelopmentMode"]</h3>
+<p>
+    @Localizer["DevMsgPart1"] <strong>@Localizer["DevMsgPart2"]</strong> @Localizer["DevMsgPart3"]
+</p>
+<p>
+    <strong>@Localizer["DevWarnPart1"]</strong>, Localizer["DevWarnPart2"] <strong>ASPNETCORE_ENVIRONMENT</strong> Localizer["DevWarnPart3"] <strong>Development</strong>, Localizer["DevWarnPart4"]
+</p>

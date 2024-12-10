@@ -1,0 +1,33 @@
+﻿@model BaseballModelsLib.Models.Player
+
+@{
+    ViewData["Title"] = Localizer["Delete"];
+}
+
+<h1>@Localizer["Delete"]</h1>
+
+<h3>@Localizer["ConfirmDelete"]</h3>
+<div>
+    <h4>@Localizer["Player"]</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Localizer["Name"]
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["DOB"]
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.DOB
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value=@Localizer["Delete"] class="btn btn-danger" /> |
+        <a asp-action="Index">@Localizer["BackToList"]</a>
+    </form>
+</div>

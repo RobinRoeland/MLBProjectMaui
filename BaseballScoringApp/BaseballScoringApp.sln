@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballScoringApp", "BaseballScoringApp\BaseballScoringApp.csproj", "{C8371F5C-637A-4255-9873-851276C253AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballModelsLib", "..\BaseballModelsLib\BaseballModelsLib.csproj", "{B5BD519C-12E6-438A-A4EB-65A949803103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLBRestAPI", "..\MLBRestAPI\MLBRestAPI.csproj", "{7DC7E954-B513-4877-B7E0-B4780052E198}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A73E25F-620B-46D3-8D07-256BD1C72EBC}"
+	ProjectSection(SolutionItems) = preProject
+		BaseballScoringApp\PopupDialogPane.xaml.cs = BaseballScoringApp\PopupDialogPane.xaml.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8371F5C-637A-4255-9873-851276C253AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8371F5C-637A-4255-9873-851276C253AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8371F5C-637A-4255-9873-851276C253AD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C8371F5C-637A-4255-9873-851276C253AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8371F5C-637A-4255-9873-851276C253AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5BD519C-12E6-438A-A4EB-65A949803103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5BD519C-12E6-438A-A4EB-65A949803103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5BD519C-12E6-438A-A4EB-65A949803103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5BD519C-12E6-438A-A4EB-65A949803103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC7E954-B513-4877-B7E0-B4780052E198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC7E954-B513-4877-B7E0-B4780052E198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC7E954-B513-4877-B7E0-B4780052E198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC7E954-B513-4877-B7E0-B4780052E198}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

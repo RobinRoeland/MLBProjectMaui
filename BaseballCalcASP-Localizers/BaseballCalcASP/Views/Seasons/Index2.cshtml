@@ -1,0 +1,173 @@
+﻿@model IEnumerable<BaseballModelsLib.Models.Season>
+
+@{
+    ViewData["Title"] = @Localizer["Seasons"];
+}
+
+<h1>@Localizer["Seasons"]</h1>
+@if (ViewBag.playerid != null)
+{
+    <p>
+        @if (User.IsInRole("admin"))
+        {
+            <a asp-action="Create" asp-route-id="@ViewBag.playerid">@Localizer["Create"]</a>
+        }
+    </p>
+    <p>
+    </p>    
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Localizer["Year"]
+            </th>
+            <th>
+                @Localizer["Games"]
+            </th>
+            <th>
+                TA
+            </th>
+            <th>
+                SLG
+            </th>
+            <th>
+                BA
+            </th>
+            <th>
+                AB
+            </th>
+            <th>
+                H (Hit)
+            </th>
+            <th>
+                K (Hit)
+            </th>
+            <th>
+                BB
+            </th>
+            <th>
+                HBP
+            </th>
+            <th>
+                BB/K
+            </th>
+            <th>
+                TB
+            </th>
+            <th>
+                1B
+            </th>
+            <th>
+                2B
+            </th>
+            <th>
+                3B
+            </th>
+            <th>
+                HR
+            </th>
+            <th>
+                OBP
+            </th>
+            <th>
+                OPS
+            </th>
+            <th>
+                SB
+            </th>
+            <th>
+                CS
+            </th>
+            <th>
+                K (pitch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        float atbats = item.PlateAppearences - (item.BaseOnBalls + item.HitByPitch + item.SacrificeFlies + item.SacrificeHits); //, interference, or obstruction
+        float obp = (item.Hits + item.BaseOnBalls + item.HitByPitch) / (atbats + item.BaseOnBalls + item.HitByPitch + item.SacrificeFlies);
+        float totalbases = item.Singles + 2 * item.Doubles + 3 * item.Triples + 4 * item.HomeRuns;
+        float sluggingavg = totalbases / atbats;
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GamesPlayed)
+            </td>
+            <td>
+                @Math.Round((totalbases + item.BaseOnBalls + item.StolenBases) / (item.PlateAppearences + item.CaughtStealing), 2)
+            </td>
+            <td>
+                @Math.Round(sluggingavg, 2)
+            </td>
+            <td>
+                @Math.Round(item.Hits / atbats, 3)
+            </td>
+            <td>
+                @atbats
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HStrikeOuts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaseOnBalls)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HitByPitch)
+            </td>
+            <td>
+                @(Math.Round((double)(item.BaseOnBalls / item.HStrikeOuts), 2))
+            </td>
+            <td>
+                @totalbases
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Singles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doubles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Triples)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeRuns)
+            </td>
+            <td>
+                @Math.Round(obp, 2)
+            </td>
+            <td>
+                @Math.Round((obp + sluggingavg), 2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StolenBases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaughtStealing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PStrikeOuts)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id"> | @Localizer["Edit"]</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"> | @Localizer["Delete"] </a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Players" asp-action="Index">@Localizer["BackToList"]</a>
+</div>

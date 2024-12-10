@@ -1,0 +1,60 @@
+﻿@model BaseballCalcASP.Models.EditAppUserViewModel
+
+@{
+    ViewData["Title"] = Localizer["Edit"];
+}
+
+<h1>@Localizer["Edit"]</h1>
+
+<h4>@Localizer["User"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">@Localizer["UserName"]</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">@Localizer["FirstName"]</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">@Localizer["LastName"]</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label">@Localizer["Email"]</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deleted" class="control-label">@Localizer["Deleted"]</label><br />
+                <input type="checkbox" value="@Model.deleted" asp-for="deleted"/>
+                <span asp-validation-for="deleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Roles" class="control-label">@Localizer["Roles"]</label>
+                <select asp-for="Roles" multiple class="form-control" asp-items="@(new SelectList(ViewBag.Roles))"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@Localizer["Save"] class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Localizer["BackToList"]</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

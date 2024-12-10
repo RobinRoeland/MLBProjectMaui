@@ -1,0 +1,97 @@
+﻿using BaseballCalcASP.Data;
+using BaseballModelsLib.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+
+namespace BaseballCalcASP.APIControllers
+{
+    [Route("api/games")]
+    [ApiController]
+    public class GamesControllerAPI : ControllerBase
+    {
+        private readonly BaseballCalcASPContext _context;
+
+        public GamesControllerAPI(BaseballCalcASPContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Players
+        [HttpGet]
+        [Route("listgames")]
+        public async Task<ActionResult<List<Game>>> GetGames()
+        {
+            if (_context.Games == null)
+            {
+                return null;
+            }
+
+            //            var jsonString = JsonSerializer.Serialize(_context.Players);
+            //          return await _context.Players.ToListAsync();//.ToJson();
+            var jsonString = JsonSerializer.Serialize(_context.Games);
+            return Content(jsonString, "application/json");
+        }
+        /*[HttpGet]
+        [Route("findgame")]
+        // POST: api/players/findplayer
+        public async Task<ActionResult<Game>> Findplayer(int? id)
+        {
+            if (id == null || _context.Games == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            //            player.Team = _context.Teams.Find(player.TeamId);
+
+            // Ok function automatically serializes player object to JSON
+            //return Ok(player);
+            var jsonString = JsonSerializer.Serialize(game);
+            return Content(jsonString, "application/json");
+        }*/
+
+        // POST: Games - Accept JSON to add a list of players
+        [HttpPost]
+        [Route("addgame")]
+        public async Task<IActionResult> AddTeams([FromBody] Game game)
+        {
+            // The[FromBody] List<Team> parameter tells ASP.NET Core to automatically deserialize the JSON payload into a List < Team > object.
+            // the json is automatically converted on receipt to List<Team>, no need to deserialize here
+            if (game == null)
+            {
+                return BadRequest("No game found in the payload.");
+            }
+
+            try
+            {
+                // Add the deserialized teams to the database context
+                game.Id = _context.Games.Count() + 1;
+                _context.Games.Add(game);
+                
+                // Save changes asynchronously
+                await _context.SaveChangesAsync();
+
+                //return Ok($"Game added successfully.");
+                //return the game (contains now id)
+                var jsonString = JsonSerializer.Serialize(game);
+                return Content(jsonString, "application/json");
+            }
+            catch (JsonException ex)
+            {
+                return BadRequest($"Invalid JSON format: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+    }
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:BaseballScoringApp"
+             xmlns:viewmodels="clr-namespace:BaseballScoringApp.ViewModels"
+             x:Class="BaseballScoringApp.GameStartContentPage"
+             Title="GameStartContentPage"
+             Appearing="OnPageAppearing">
+    <ContentPage.BindingContext>
+        <viewmodels:GameStartContentPageViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+    <VerticalStackLayout Spacing="10" Margin="10,0,10,0">
+        
+        <Label 
+            Text="Start A New Game"
+            FontSize="Large"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <!-- Date and Time of game -->
+            <Label Text="Game Date and Time"
+               FontSize="16"
+               FontAttributes="Bold" />
+            <Border Style="{StaticResource BorderStyle}" >
+                <HorizontalStackLayout Padding="10" Spacing="10,0,10,0" >
+                    <!-- Date Display -->
+                    <Label Text="Gameday:" FontSize="12" VerticalOptions="Center"/>
+                    <!-- Date Picker -->
+                    <DatePicker Date="{Binding GameDate, Mode=TwoWay}" VerticalOptions="Center" Style="{StaticResource DatePickerStyle}"/>
+
+                    <!-- Time Display -->
+                    <Label Text="Time:" FontSize="12" VerticalOptions="Center"/>
+
+                    <!-- Time Picker -->
+                    <TimePicker Time="{Binding GameTime, Mode=TwoWay}" />
+                </HorizontalStackLayout>
+            </Border>
+            <!-- Home Team select -->
+        <Label Text="Home Team"
+               FontSize="16"
+               FontAttributes="Bold"  />
+        <Border Style="{StaticResource BorderStyle}" >
+                <VerticalStackLayout Spacing="10" Margin="10,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" x:Name="HomeLogo"
+                                Source="mlb.png" Margin="10"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start"
+                                WidthRequest="60"
+                               MinimumWidthRequest="100"
+                                Aspect="Fill" />
+                        <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0" Spacing="5">
+                            <Label Text="Team Name :" HorizontalOptions="Start"  VerticalOptions="Center" />
+
+                            <CarouselView 
+                                x:Name="TeamCarrouselHome"
+                                IndicatorView="HomeTeamIndicatorVw"
+                                BackgroundColor="LightGray"      
+                                HorizontalOptions="StartAndExpand"
+                                ItemsSource="{Binding TeamList}"
+                                CurrentItem="{Binding SelectedHomeTeam, Mode=TwoWay}"
+                                CurrentItemChanged="CarouselViewHome_CurrentItemChanged">
+                                <CarouselView.ItemTemplate >
+                                    <DataTemplate>
+                                        <VerticalStackLayout BackgroundColor="{StaticResource CarouselBackground}" Padding="10" >
+                                            <Label WidthRequest="500" FontSize="14" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="Black"></Label>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView x:Name="HomeTeamIndicatorVw" Style="{StaticResource IndicatorStyle}"/>
+                            <Label Text="Starting Pitcher :" HorizontalOptions="Start"  VerticalOptions="Center" />
+
+                            <CarouselView 
+                                x:Name="TeamCarrouselHomePitcher"
+                                IndicatorView="HomePitcherIndicatorVw"
+                                BackgroundColor="LightGray"      
+                                HorizontalOptions="StartAndExpand"
+                                ItemsSource="{Binding PitchersForSelectedHomeTeam}"                        
+                                CurrentItem="{Binding SelectedPitcherHomeTeam, Mode=TwoWay}"
+                                >
+                                <CarouselView.ItemTemplate >
+                                    <DataTemplate>
+                                        <VerticalStackLayout BackgroundColor="{StaticResource CarouselBackground}" Padding="10" >
+                                            <Label WidthRequest="500" FontSize="14" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="Black"></Label>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView x:Name="HomePitcherIndicatorVw" Style="{StaticResource IndicatorStyle}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        <!-- Away Team select -->
+        <Label Text="Away Team"
+               FontSize="16"
+               FontAttributes="Bold" />
+        <Border Style="{StaticResource BorderStyle}" >
+                <VerticalStackLayout Spacing="10" Margin="10,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" x:Name="AwayLogo"
+                                Source="mlb.png" Margin="10"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start"
+                                WidthRequest="60"
+                               MinimumWidthRequest="100"
+                                Aspect="Fill" />
+                        <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0" Spacing="5">
+                            <Label Text="Away Team :" HorizontalOptions="Start"  VerticalOptions="Center" Margin="0,0,10,0"/>
+                            <CarouselView 
+                                x:Name="TeamCarrouselAway"
+                                BackgroundColor="LightGray"      
+                                HorizontalOptions="StartAndExpand"
+                                IndicatorView="AwayTeamIndicatorVw"
+                                ItemsSource="{Binding TeamList}" 
+                                CurrentItem="{Binding SelectedAwayTeam, Mode=TwoWay}"
+                                CurrentItemChanged="CarouselViewAway_CurrentItemChanged">
+
+                                <CarouselView.ItemTemplate >
+                                    <DataTemplate>
+                                        <VerticalStackLayout BackgroundColor="{StaticResource CarouselBackground}" Padding="10" >
+                                            <Label WidthRequest="500" FontSize="14" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="Black"></Label>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView x:Name="AwayTeamIndicatorVw" Style="{StaticResource IndicatorStyle}"/>
+
+                            <Label Text="Starting Pitcher :" HorizontalOptions="Start"  VerticalOptions="Center" />
+
+                            <CarouselView 
+                                    x:Name="TeamCarrouselAwayPitcher"
+                                    IndicatorView="AwayPictcherIndicatorVw"
+                                    BackgroundColor="LightGray"      
+                                    HorizontalOptions="StartAndExpand"
+                                    ItemsSource="{Binding PitchersForSelectedAwayTeam}"
+                                    CurrentItem="{Binding SelectedPitcherAwayTeam, Mode=TwoWay}"
+                                    >
+                                <CarouselView.ItemTemplate >
+                                    <DataTemplate>
+                                        <VerticalStackLayout BackgroundColor="{StaticResource CarouselBackground}" Padding="10" >
+                                            <Label WidthRequest="500" FontSize="14" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="Black"></Label>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView x:Name="AwayPictcherIndicatorVw"  Style="{StaticResource IndicatorStyle}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        <Label Text="Number of Innings in game" FontSize="16"
+                FontAttributes="Bold"/>
+        <Border Style="{StaticResource BorderStyle}" >
+            <VerticalStackLayout>
+                <Slider x:Name="InningSlider" 
+                        Minimum="1" Maximum="9"
+                        Value="{Binding NumInningsInGame, Mode=TwoWay}"
+                        Style="{StaticResource SliderStyle}"
+                         ></Slider>
+                <Label HorizontalOptions="Center" Text="{Binding NumInningsInGame}" FontSize="14"/>
+            </VerticalStackLayout>
+        </Border>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Start Scoring Game"  Margin="10,0,0,10" Clicked="ButtonStartGame_Clicked"></Button>
+        </StackLayout>
+
+        
+
+        
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

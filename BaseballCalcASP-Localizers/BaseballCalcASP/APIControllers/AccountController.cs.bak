@@ -1,0 +1,82 @@
+﻿using BaseballCalcASP.Areas.Identity.Pages.Account;
+using BaseballCalcASP.Data;
+using BaseballModelsLib.Models;
+using BaseballCalcASP.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+
+namespace BaseballCalcASP.APIControllers
+{
+    [ApiController]
+    //[Route("api/[controller]")]
+    [Route("api/Account")]
+    public class AccountController : ControllerBase
+    {
+        private readonly BaseballCalcASPContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+
+        public AccountController(BaseballCalcASPContext context, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<ActionResult<bool>> Login([FromBody] APIModels.LoginModel model)
+        {
+            Console.WriteLine("HIT!");
+            Console.WriteLine(model.Email);
+            Console.WriteLine(model.Password);
+
+            // Check if the user exists based on the email
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                // Return a specific error if the user is not found
+                return Ok(new { isAuthenticated = false, message = "Email not found" });
+            }
+
+            // Validate the password
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
+            //var result = await _signInManager.PasswordSignInAsync("admin@testemail.com", "Start123#", false, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                // Create a JWT token
+                var token = CreateJwtToken(user);
+
+                //return User.Identity.IsAuthenticated; //returning boolean fails in WPF
+                // On the server side, return a proper object, not just a boolean
+                return Ok(new { isAuthenticated = true, token});
+            }
+
+            // Return a specific error if the password is incorrect
+            return Ok(new { isAuthenticated = false, message = "Invalid password" });
+        }
+        private string CreateJwtToken(AppUser user)
+        {
+            var claims = new[]
+            {
+        new Claim(ClaimTypes.Name, user.UserName),
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+    };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my-secret-key"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                issuer: "BaseballCalcASP.com",
+                audience: "BaseballCalcASP.com",
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+    }
+}

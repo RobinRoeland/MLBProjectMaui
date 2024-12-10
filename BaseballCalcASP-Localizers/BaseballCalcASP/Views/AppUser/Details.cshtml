@@ -1,0 +1,69 @@
+﻿@model BaseballCalcASP.Models.AppUser
+
+@{
+    ViewData["Title"] = Localizer["Details"];
+}
+<style>
+    character {
+        display: flex;
+        background: LightGray;
+        box-shadow: 5px 5px Gray;
+        flex: 1 0 auto;
+    }
+
+    #characterPic {
+        user-select: none;
+        height: 50%;
+        margin-right: 5%;
+    }
+
+    main {
+        display: flex;
+    }
+
+    name {
+        user-select: none;
+        font-weight: bold;
+    }
+
+    name p {
+        user-select: text;
+        font-weight: 100;
+        margin-left: 20px;
+    }
+
+    column {
+        margin: 3%;
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 auto;
+    }
+
+    row {
+        display: flex;
+        flex-direction: row;
+    }
+
+</style>
+<character>
+    <column>
+        <row>
+            <column>
+                <name>@Localizer["UserName"]<p>@Model.UserName</p></name>
+                <name>@Localizer["FirstName"]<p>@Model.FirstName</p></name>
+                <name>@Localizer["LastName"]<p>@Model.LastName</p></name>
+                <name>@Localizer["Email"]<p>@Model.Email</p></name>
+                <name>@Localizer["Deleted"]<p>@Model.deleted</p></name>
+                <name>@Localizer["Roles"]<p>@(string.Join(", ", await UserManager.GetRolesAsync(Model)))</p></name>
+            </column>
+        </row>
+        <hr />
+        <div style="user-select:none;">
+            @if (User.IsInRole("admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model?.Id">@Localizer["Edit"]</a>
+            }
+            <a asp-action="Index">@Localizer["BackToList"]</a>
+        </div>
+    </column>
+</character>

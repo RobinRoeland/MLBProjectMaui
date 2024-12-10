@@ -1,0 +1,134 @@
+﻿@model BaseballModelsLib.Models.Season
+
+@{
+    ViewData["Title"] = @Localizer["Create"];
+}
+
+<h1>@Localizer["Create"]</h1>
+
+<h4>@Localizer["Season"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="PlayerKey" type="hidden" value="@ViewBag.Player.Id" />
+            <div class="form-group">
+                <label asp-for="GamesPlayed" class="control-label">@Localizer["GamesPlayed"]</label>
+                <input asp-for="GamesPlayed" class="form-control" />
+                <span asp-validation-for="GamesPlayed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label">@Localizer["Year"]</label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlateAppearences" class="control-label">@Localizer["PlateAppearences"]</label>
+                <input asp-for="PlateAppearences" class="form-control" />
+                <span asp-validation-for="PlateAppearences" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HStrikeOuts" class="control-label">@Localizer["HStrikeOuts"]</label>
+                <input asp-for="HStrikeOuts" class="form-control" />
+                <span asp-validation-for="HStrikeOuts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hits" class="control-label">@Localizer["Hits"]</label>
+                <input asp-for="Hits" class="form-control" />
+                <span asp-validation-for="Hits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Singles" class="control-label">@Localizer["Singles"]</label>
+                <input asp-for="Singles" class="form-control" />
+                <span asp-validation-for="Singles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doubles" class="control-label">@Localizer["Doubles"]</label>
+                <input asp-for="Doubles" class="form-control" />
+                <span asp-validation-for="Doubles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Triples" class="control-label">@Localizer["Triples"]</label>
+                <input asp-for="Triples" class="form-control" />
+                <span asp-validation-for="Triples" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomeRuns" class="control-label">@Localizer["HomeRuns"]</label>
+                <input asp-for="HomeRuns" class="form-control" />
+                <span asp-validation-for="HomeRuns" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseOnBalls" class="control-label">@Localizer["BaseOnBalls"]</label>
+                <input asp-for="BaseOnBalls" class="form-control" />
+                <span asp-validation-for="BaseOnBalls" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HitByPitch" class="control-label">@Localizer["HitByPitch"]</label>
+                <input asp-for="HitByPitch" class="form-control" />
+                <span asp-validation-for="HitByPitch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SacrificeFlies" class="control-label">@Localizer["SacrificeFlies"]</label>
+                <input asp-for="SacrificeFlies" class="form-control" />
+                <span asp-validation-for="SacrificeFlies" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SacrificeHits" class="control-label">@Localizer["SacrificeHits"]</label>
+                <input asp-for="SacrificeHits" class="form-control" />
+                <span asp-validation-for="SacrificeHits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaughtStealing" class="control-label">@Localizer["CaughtStealing"]</label>
+                <input asp-for="CaughtStealing" class="form-control" />
+                <span asp-validation-for="CaughtStealing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StolenBases" class="control-label">@Localizer["StolenBases"]</label>
+                <input asp-for="StolenBases" class="form-control" />
+                <span asp-validation-for="StolenBases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Runs" class="control-label">@Localizer["Runs"]</label>
+                <input asp-for="Runs" class="form-control" />
+                <span asp-validation-for="Runs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Errors" class="control-label">@Localizer["Errors"]</label>
+                <input asp-for="Errors" class="form-control" />
+                <span asp-validation-for="Errors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoublePlays" class="control-label">@Localizer["DoublePlays"]</label>
+                <input asp-for="DoublePlays" class="form-control" />
+                <span asp-validation-for="DoublePlays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TriplePlays" class="control-label">@Localizer["TriplePlays"]</label>
+                <input asp-for="TriplePlays" class="form-control" />
+                <span asp-validation-for="TriplePlays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PassedBalls" class="control-label">@Localizer["PassedBalls"]</label>
+                <input asp-for="PassedBalls" class="form-control" />
+                <span asp-validation-for="PassedBalls" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PStrikeOuts" class="control-label">@Localizer["PStrikeOuts"]</label>
+                <input asp-for="PStrikeOuts" class="form-control" />
+                <span asp-validation-for="PStrikeOuts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@Localizer["Create"] class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Localizer["BackToList"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

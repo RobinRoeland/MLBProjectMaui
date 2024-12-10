@@ -1,0 +1,9 @@
+﻿@model LanguageSelectorViewModel
+
+<div class="language-selector">
+    <form asp-controller="Home" asp-action="SetCulture" method="post">
+        <select asp-for="CurrentCulture" asp-items="new SelectList(Model.SupportedCultures, nameof(System.Globalization.CultureInfo.Name), nameof(System.Globalization.CultureInfo.DisplayName))" onchange="this.form.submit()">
+            <option value="">Select Language</option>
+        </select>
+    </form>
+</div>

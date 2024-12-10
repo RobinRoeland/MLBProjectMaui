@@ -1,0 +1,312 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\globals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\globals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\mainpagelogin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\mainpagelogin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\viewmodels\\playerselectioncontentpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\viewmodels\\playerselectioncontentpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\playerselectioncontentpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\playerselectioncontentpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\playerselectioncontentpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\playerselectioncontentpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\gamestartcontentpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\gamestartcontentpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\models\\bbdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\models\\bbdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\models\\bbscorestatistic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\models\\bbscorestatistic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\BaseballDotNet\\BaseballModelsLib\\Models\\ScoreStatistic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\playerstatisticscontentpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\playerstatisticscontentpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\mainpagelogin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\mainpagelogin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|c:\\projects\\baseballdotnet-1012\\baseballscoringapp\\baseballscoringapp\\platforms\\android\\resources\\xml\\network_security_config.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C8371F5C-637A-4255-9873-851276C253AD}|BaseballScoringApp\\BaseballScoringApp.csproj|solutionrelative:baseballscoringapp\\platforms\\android\\resources\\xml\\network_security_config.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 298,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerSelectionContentPage.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\PlayerSelectionContentPage.xaml.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\PlayerSelectionContentPage.xaml.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\PlayerSelectionContentPage.xaml.cs",
+              "RelativeToolTip": "BaseballScoringApp\\PlayerSelectionContentPage.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwBEAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:12:21.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerSelectionContentPageViewModel.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\ViewModels\\PlayerSelectionContentPageViewModel.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\ViewModels\\PlayerSelectionContentPageViewModel.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\ViewModels\\PlayerSelectionContentPageViewModel.cs",
+              "RelativeToolTip": "BaseballScoringApp\\ViewModels\\PlayerSelectionContentPageViewModel.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAArwCkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T12:37:25.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlayerSelectionContentPage.xaml",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\PlayerSelectionContentPage.xaml",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\PlayerSelectionContentPage.xaml",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\PlayerSelectionContentPage.xaml",
+              "RelativeToolTip": "BaseballScoringApp\\PlayerSelectionContentPage.xaml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC8AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-05T12:25:46.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Globals.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Globals.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\Globals.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Globals.cs",
+              "RelativeToolTip": "BaseballScoringApp\\Globals.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T10:40:09.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\MauiProgram.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MauiProgram.cs",
+              "RelativeToolTip": "BaseballScoringApp\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T10:59:22.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GameStartContentPage.xaml",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\GameStartContentPage.xaml",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\GameStartContentPage.xaml",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\GameStartContentPage.xaml",
+              "RelativeToolTip": "BaseballScoringApp\\GameStartContentPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-05T12:32:52.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BBScoreStatistic.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Models\\BBScoreStatistic.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\Models\\BBScoreStatistic.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Models\\BBScoreStatistic.cs",
+              "RelativeToolTip": "BaseballScoringApp\\Models\\BBScoreStatistic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T07:54:53.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ScoreStatistic.cs",
+              "DocumentMoniker": "C:\\BaseballDotNet\\BaseballModelsLib\\Models\\ScoreStatistic.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BaseballDotNet\\BaseballModelsLib\\Models\\ScoreStatistic.cs",
+              "ToolTip": "C:\\BaseballDotNet\\BaseballModelsLib\\Models\\ScoreStatistic.cs",
+              "RelativeToolTip": "..\\..\\..\\BaseballDotNet\\BaseballModelsLib\\Models\\ScoreStatistic.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T12:41:23.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BBDataRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Models\\BBDataRepository.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\Models\\BBDataRepository.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Models\\BBDataRepository.cs",
+              "RelativeToolTip": "BaseballScoringApp\\Models\\BBDataRepository.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAJAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T10:47:09.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPageLogin.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MainPageLogin.xaml.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\MainPageLogin.xaml.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MainPageLogin.xaml.cs",
+              "RelativeToolTip": "BaseballScoringApp\\MainPageLogin.xaml.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAhwFIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:43:38.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\AppShell.xaml",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\AppShell.xaml",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\AppShell.xaml",
+              "RelativeToolTip": "BaseballScoringApp\\AppShell.xaml",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-02T20:02:29.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\AppShell.xaml.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\AppShell.xaml.cs",
+              "RelativeToolTip": "BaseballScoringApp\\AppShell.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T20:02:28.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\App.xaml.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\App.xaml.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\App.xaml.cs",
+              "RelativeToolTip": "BaseballScoringApp\\App.xaml.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAiwCoAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T20:02:37.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\App.xaml",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\App.xaml",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\App.xaml",
+              "RelativeToolTip": "BaseballScoringApp\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-02T20:02:34.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PlayerStatisticsContentPage.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\PlayerStatisticsContentPage.xaml.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\PlayerStatisticsContentPage.xaml.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\PlayerStatisticsContentPage.xaml.cs",
+              "RelativeToolTip": "BaseballScoringApp\\PlayerStatisticsContentPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T19:44:42.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MainPage.xaml.cs",
+              "RelativeToolTip": "BaseballScoringApp\\MainPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T16:48:34.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MainPageLogin.xaml",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MainPageLogin.xaml",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\MainPageLogin.xaml",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\MainPageLogin.xaml",
+              "RelativeToolTip": "BaseballScoringApp\\MainPageLogin.xaml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-02T15:06:31.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "network_security_config.xml",
+              "DocumentMoniker": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Platforms\\Android\\Resources\\xml\\network_security_config.xml",
+              "RelativeDocumentMoniker": "BaseballScoringApp\\Platforms\\Android\\Resources\\xml\\network_security_config.xml",
+              "ToolTip": "C:\\Projects\\BaseballDotNet-1012\\BaseballScoringApp\\BaseballScoringApp\\Platforms\\Android\\Resources\\xml\\network_security_config.xml",
+              "RelativeToolTip": "BaseballScoringApp\\Platforms\\Android\\Resources\\xml\\network_security_config.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2024-11-28T13:26:15.685Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

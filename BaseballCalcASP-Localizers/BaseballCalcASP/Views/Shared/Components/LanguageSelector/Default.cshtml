@@ -1,0 +1,16 @@
+﻿<!-- Default.cshtml -->
+<div class="language-selector">
+    @{
+        var returnUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+    }
+
+    <form asp-controller="Home" asp-action="SetCulture" asp-route-returnUrl=@returnUrl method="post">
+        <select name="culture" onchange="this.form.submit()">
+            <option selected>@Localizer["ChangeLang"]</option>
+            <option value="en-US">English</option>
+            <option value="nl-BE">Nederlands</option>
+            <option value="fr-FR">Français</option>
+        </select>
+    </form>
+
+</div>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BaseballScoringApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.FlyoutBehavior="Flyout"
+    xmlns:local="clr-namespace:BaseballScoringApp"
+    Title="BaseballScoringApp">
+
+    <!-- MainPage tab, which should only be shown after login -->
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Scoring"
+            ContentTemplate="{DataTemplate local:GameStartContentPage}"          
+            Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
+        
+        <ShellContent
+            Title="Statistics"
+            ContentTemplate="{DataTemplate local:PlayerSelectionContentPage}"          
+            Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
+        <ShellContent
+            Title="Test"
+            Route="TestPage"            
+            ContentTemplate="{DataTemplate local:TestPage}"
+            Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
+        
+    </TabBar>
+    
+</Shell>

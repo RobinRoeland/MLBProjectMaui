@@ -1,0 +1,153 @@
+﻿@model BaseballModelsLib.Models.Season
+
+@{
+    ViewData["Title"] = @Localizer["Delete"];
+}
+
+<h1>@Localizer["Delete"]</h1>
+
+<h3>@Localizer["AreYouSure"]</h3>
+<div>
+    <h4>@Localizer["Season"]</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Localizer["PlayerKey"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlayerKey)
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["GamesPlayed"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GamesPlayed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["Year"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["PlateAppearences"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlateAppearences)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["HStrikeOuts"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HStrikeOuts)
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["Hits"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hits)
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["Singles"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Singles)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["Doubles"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Doubles)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["Triples"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Triples)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["HomeRuns"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HomeRuns)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["BaseOnBalls"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BaseOnBalls)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["HitByPitch"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HitByPitch)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["SacrificeFlies"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SacrificeFlies)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["SacrificeHits"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SacrificeHits)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["CaughtStealing"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CaughtStealing)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["StolenBases"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StolenBases)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["Runs"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Runs)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["Errors"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Errors)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["DoublePlays"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DoublePlays)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["TriplePlays"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TriplePlays)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["PassedBalls"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PassedBalls)
+        </dd>
+        <dt class="col-sm-2">
+            @Localizer["PStrikeOuts"];
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PStrikeOuts)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value=@Localizer["Delete"] class="btn btn-danger" /> |
+        <a asp-action="Index">@Localizer["BackToList"]</a>
+    </form>
+</div>

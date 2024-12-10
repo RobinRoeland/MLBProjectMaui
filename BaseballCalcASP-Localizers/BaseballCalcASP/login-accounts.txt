@@ -1,0 +1,7 @@
+Login voor admin functies:
+admin@testemail.com
+Start123#
+
+Login voor user functies:
+user1@testemail.com
+Start123#

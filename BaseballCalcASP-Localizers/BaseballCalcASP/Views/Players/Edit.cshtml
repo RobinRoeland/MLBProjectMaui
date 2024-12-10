@@ -1,0 +1,50 @@
+﻿@model BaseballModelsLib.Models.Player
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<h1>@Localizer["Title"]</h1>
+
+<h4>@Localizer["Player"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">@Localizer["Name"]</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DOB" class="control-label">@Localizer["DOB"]</label>
+                <input type="date" asp-for="DOB" class="form-control" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team" class="control-label">@Localizer["Team"]</label>
+                <select asp-for="TeamId" class="form-control">
+                    <option value="@null">FA</option>
+                    @foreach (BaseballModelsLib.Models.Team team in ViewBag.Teams)
+                    {
+                        <option value="@team.Id">@team.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="TeamId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@Localizer["Save"] class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Localizer["BackToList"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

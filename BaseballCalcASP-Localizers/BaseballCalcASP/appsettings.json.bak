@@ -1,0 +1,24 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "BaseballCalcASPContext": "Server=(localdb)\\mssqllocaldb;Database=BaseballCalcASP.Data;Integrated Security=true;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true"
+  },
+  "ExternalProviders": {
+    "MailKit": {
+      "SMTP": {
+        "Address": "smtp.office.365.com",
+        "Port": "587",
+        "Account": "dt.atlassian@ehb.be",
+        "Password": "xWNtPhVd",
+        "SenderEmail": "dt.atlassian@ehb.be",
+        "SenderName": "???"
+      }
+    }
+  }
+}
