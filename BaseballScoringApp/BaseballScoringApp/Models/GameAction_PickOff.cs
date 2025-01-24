@@ -9,10 +9,10 @@ namespace BaseballScoringApp.Models
     public class GameAction_PickOff : GameActionBase
     {
         FieldPositions mWhichBase;
-        public GameAction_PickOff(BBPlayer forPlayer, FieldPositions pickedOfOnbase, string display)
+        public GameAction_PickOff(BBPlayer forPlayer, FieldPositions ErrorOnbase, string display)
         {
-            ActionName = "Pickoff";
-            mWhichBase = pickedOfOnbase;
+            ActionName = "Error";
+            mWhichBase = ErrorOnbase;
             ActionDisplayName = display;
             playerInvolved = forPlayer;
         }
@@ -20,22 +20,29 @@ namespace BaseballScoringApp.Models
         public override void DoAction(BBGame forGame)
         {
             BBGameProgress gpr = forGame.mGameProgress;
+
             gpr.mOuts++;
-            switch(mWhichBase)
+
+            SoundManager sm = SoundManager.getInstance();
+            sm.PlaySound("mp3/heisout.mp3");
+
+            switch (mWhichBase)
             {
                 case FieldPositions.firstbase:
                     gpr.mRunnerOn1thBase = null;
                     break;
                 case FieldPositions.secondbase:
-                    gpr.mRunnerOn2ndBase= null;
+                    gpr.mRunnerOn2ndBase = null;
                     break;
                 case FieldPositions.thirdbase:
                     gpr.mRunnerOn3rdBase = null;
                     break;
             }
-            SoundManager sm = SoundManager.getInstance();
-            sm.PlaySound("mp3/heisout.mp3");
+
             gpr.mScoreManager.registerScore("PickOff", gpr.getCurrentPitcher(), 1);
+            gpr.mScoreManager.registerScore("PickOff", playerInvolved, 1);
+            gpr.mScoreManager.registerScore("Out", playerInvolved, 1);
+
         }
     };
 }

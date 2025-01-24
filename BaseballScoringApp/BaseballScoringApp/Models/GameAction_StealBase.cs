@@ -19,7 +19,9 @@ namespace BaseballScoringApp.Models
 
         public override void DoAction(BBGame forGame)
         {
+            SoundManager sm = SoundManager.getInstance();
             BBGameProgress gpr = forGame.mGameProgress;
+
             //remove from current base
             if (gpr.mRunnerOn1thBase == playerInvolved)
                 gpr.mRunnerOn1thBase = null;
@@ -45,6 +47,8 @@ namespace BaseballScoringApp.Models
                 //Add scoring for batter
                 gpr.mScoreManager.registerScore("Runs", playerInvolved, 1);
             }
+            sm.PlaySound("mp3/slidebase.mp3");
+
             gpr.mScoreManager.registerScore("StolenBase", playerInvolved, 1);
         }
     }

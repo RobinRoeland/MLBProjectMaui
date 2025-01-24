@@ -1,0 +1,2 @@
+﻿Id,HomeTeamId,AwayTeamId,GameDate,GameTime,HomeStartingPitcherId,AwayStartingPitcherId,TotalInnings,ErrorsAwayTeam,ErrorsHomeTeam,Finished,HitsAwayTeam,HitsHomeTeam,RunsAwayTeam,RunsHomeTeam,User
+1,108,118,31/12/2024,00:00,543294,672582,9,0,0,1,0,0,4,3,admin@testemail.com

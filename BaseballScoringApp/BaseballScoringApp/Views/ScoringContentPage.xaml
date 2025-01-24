@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:BaseballScoringApp.ViewModels"
+             x:Class="BaseballScoringApp.ScoringContentPage"
+             Title="Scoring Sheet"
+             Appearing="OnPageAppearing"
+             >
+    <ContentPage.BindingContext>
+        <viewmodels:ScoringContentPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="18*, 50*, 15*, 07*" >
+        <!-- scoreboard -->
+        <Grid Row="0" x:Name="ScoreBoardGrid" Padding="5,0,0,5" BackgroundColor="Black">
+            <VerticalStackLayout>
+                <!-- balls strikes outs -->
+                <HorizontalStackLayout HorizontalOptions="Start">
+                    <Border Stroke="Transparent" StrokeThickness="1" Padding="3">
+                        <HorizontalStackLayout Spacing="5">
+                            <Label Text="PITCH" TextColor="White" VerticalOptions="Center" />
+                            <Border Stroke="White" StrokeThickness="1" Padding="5">
+                                <Label x:Name="PitchCount" Text="00" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Label Text="BALLS" TextColor="White" VerticalOptions="Center" Margin="30,0,0,0"/>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5">
+                                <Label x:Name="Balls" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Label Text="STRIKE" TextColor="White" VerticalOptions="Center" Margin="10,0,0,0"/>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5">
+                                <Label x:Name="Strikes" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Label Text="OUT" TextColor="White" VerticalOptions="Center" Margin="10,0,0,0"/>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5">
+                                <Label x:Name="Outs" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </HorizontalStackLayout>
+                    </Border>
+                </HorizontalStackLayout>
+                <!-- 2nd row blocks of RHE and inning -->
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <!-- grid scores  then grid innings then names-->
+                    <HorizontalStackLayout Spacing="2">
+                        <!-- Pitcher -->
+                        <VerticalStackLayout >
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0" >
+                                <Label Text="P" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5">
+                                <Label x:Name="Pitcher_Away" Text="00" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,0">
+                                <Label x:Name="Pitcher_Home" Text="00" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- Teams -->
+                        <VerticalStackLayout >
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0" WidthRequest="80">
+                                <Label Text="TEAMS" TextColor="White" FontSize="14" HorizontalTextAlignment="Start" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="Team_Away" Text="Nam1" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="Team_Home" Text="Name2" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="0" Margin="10,0,0,0">
+                        <!-- R -->
+                        <VerticalStackLayout >
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0" >
+                                <Label Text="R" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="R_Away" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="R_Home" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- H -->
+                        <VerticalStackLayout>
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="H" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="H_Away" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="H_Home" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- R -->
+                        <VerticalStackLayout>
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="E" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="E_Away" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="E_Home" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- block with innings -->
+                    <HorizontalStackLayout Spacing="0" Margin="10,0,0,0">
+                        <!-- 1 -->
+                        <VerticalStackLayout  x:Name="Inning1_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="1" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_1" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_1" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 2 -->
+                        <VerticalStackLayout  x:Name="Inning2_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="2" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_2" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,0">
+                                <Label x:Name="I_Home_2" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 3 -->
+                        <VerticalStackLayout  x:Name="Inning3_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="3" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_3" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_3" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 4 -->
+                        <VerticalStackLayout  x:Name="Inning4_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="4" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_4" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_4" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 5 -->
+                        <VerticalStackLayout  x:Name="Inning5_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="5" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_5" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_5" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 6 -->
+                        <VerticalStackLayout  x:Name="Inning6_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="6" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_6" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_6" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 7 -->
+                        <VerticalStackLayout  x:Name="Inning7_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="7" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_7" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_7" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 8 -->
+                        <VerticalStackLayout x:Name="Inning8_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="8" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_8" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_8" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <!-- 9 -->
+                        <VerticalStackLayout x:Name="Inning9_Layout">
+                            <Border Stroke="Transparent" StrokeThickness="1" Padding="0">
+                                <Label Text="9" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="0,5,0,5">
+                                <Label x:Name="I_Away_9" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                            <Border Stroke="White" StrokeThickness="1" Padding="5" Margin="0,5,0,5">
+                                <Label x:Name="I_Home_9" Text="0" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <!-- Innings -->
+        
+       </Grid>
+
+        <!-- field layout and buttons -->
+        <Grid Row="1">
+            <!-- Baseball Field Background -->
+            <Image Source="field.png"
+                   x:Name="BaseballFieldImage"
+                   Aspect="Fill"
+                   BackgroundColor="Transparent"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                  SizeChanged="OnImageSizeChanged">
+            </Image> 
+            <!-- Graphics View for Drawing -->
+            <GraphicsView x:Name="DrawingView"
+                          BackgroundColor="Blue"
+                          VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand"                 >
+                <GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"
+                            NumberOfTapsRequired="1" />
+                </GraphicsView.GestureRecognizers>
+            </GraphicsView>
+            <!-- Buttons -->
+            <AbsoluteLayout x:Name="ButtonContainer" BackgroundColor="Transparent"
+                VerticalOptions="Center" HorizontalOptions="Center" >
+                <!-- defense, each button is a frame positioned by absolute layout and moved in code behind on image resize
+                              the imagebutton is child of the frame and has a label with rugnummer on it -->
+                <Frame x:Name="CatcherBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="CatcherBtnLayout" >
+                        <ImageButton x:Name="CatcherButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent"  Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="CatcherButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="PitcherBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="PitcherBtnLayout" >
+                            <ImageButton x:Name="PitcherButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="PitcherButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                             </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="FirstBaseBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="FirstBaseBtnLayout" >
+                        <ImageButton x:Name="FirstBaseButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="FirstBaseButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="SecondBaseBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="SecondBaseBtnLayout" >
+                        <ImageButton x:Name="SecondBaseButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="SecondBaseButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="ThirdBaseBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="ThirdBaseBtnLayout" >
+                        <ImageButton x:Name="ThirdBaseButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="ThirdBaseButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="ShortstopBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="ShortstopBtnLayout" >
+                        <ImageButton x:Name="ShortstopButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="ShortstopButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="LeftFieldBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="LeftFieldBtnLayout" >
+                        <ImageButton x:Name="LeftFieldButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="LeftFieldButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="CenterFieldBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="CenterFieldBtnLayout" >
+                        <ImageButton x:Name="CenterFieldButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="CenterFieldButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="RightFieldBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="RightFieldBtnLayout" >
+                        <ImageButton x:Name="RightFieldButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerButtonClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="RightFieldButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <!-- offsense -->
+                <Frame x:Name="BatterBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="BatterBtnLayout" >
+                        <ImageButton x:Name="BatterButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerBatterClicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="BatterButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="Base1thBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="Base1thBtnLayout" >
+                        <ImageButton x:Name="Base1thButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerBase1Clicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="Base1thButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="Base2ndBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="Base2ndBtnLayout" >
+                        <ImageButton x:Name="Base2ndButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerBase2Clicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="Base2ndButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="Base3rdBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="Base3rdBtnLayout" >
+                        <ImageButton x:Name="Base3rdButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerBase3Clicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="Base3rdButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+                <Frame x:Name="BatterIntermediateBtnFrame" BackgroundColor="Transparent" 
+                       HasShadow="False" Padding="0" Margin="0" CornerRadius="5">
+                    <AbsoluteLayout x:Name="BatterIntermediateBtnLayout" >
+                        <ImageButton x:Name="BatterIntermediateButton" Padding="0"  
+                                Source="defaultplayerimg.png" CornerRadius="5"
+                                BackgroundColor="Transparent" Clicked="OnPlayerBase2Clicked" 
+                                Aspect="AspectFit"
+                                WidthRequest="40" HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                        <Border BackgroundColor="Transparent" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0.95,1,0.4,0.4">
+                            <Label x:Name="BatterIntermediateButtonTxt" BackgroundColor="Beige"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black" FontSize="8" Padding="0"
+                               VerticalTextAlignment="Center" />
+                        </Border>
+                    </AbsoluteLayout>
+                </Frame>
+            </AbsoluteLayout>
+        </Grid>
+
+        <!-- 2nd row, at batplayer/team -->
+        <Grid Row="2" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!-- column 1 batter image-->
+            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" Margin="10,10,0,5">
+                <Label Text="At Bat" FontSize="9" HorizontalOptions="Center" VerticalTextAlignment="End"></Label>
+                <Image  x:Name="BatterImage" 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    MaximumWidthRequest="80"
+                    Aspect="AspectFit"/>
+
+            </VerticalStackLayout>
+            <!-- column 2 names -->
+            <VerticalStackLayout  Grid.Column="1" Spacing="0" VerticalOptions="Center" MinimumWidthRequest="200">
+                <Label Text="Player at bat" x:Name="PlayerAtBat" HorizontalOptions="Center" />
+                <Label Text="vs" HorizontalOptions="Center" FontSize="9"/>
+                <Label Text="Pitching" x:Name="PitcherThrowing" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            <!-- column 3 is undefined and acts as Spacer to push the second VerticalStackLayout to the right -->
+            <!-- column 4 pitcher image-->
+            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Margin="0,10,0,5">
+                <Label Text="Pitching" FontSize="9" HorizontalOptions="Center" VerticalTextAlignment="End"></Label>
+                <Image x:Name="PitcherImage" 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    MaximumWidthRequest="80"
+                    Aspect="AspectFit" />
+            </VerticalStackLayout>
+            <!-- current inning -->
+            <Label Grid.Column="3" />
+            <VerticalStackLayout Grid.Column="4" Margin="10"  VerticalOptions="Center">
+                <Image Source="inningtop.png" x:Name="InningTopImg" WidthRequest="25" ></Image>
+                <Label x:Name="InningCurrent" Text="1" HorizontalOptions="Center" TextColor="Gold" FontSize="20" FontAttributes="Bold"></Label>
+                <Image Source="inningbottom.png" x:Name="InningBottomImg" WidthRequest="25"></Image>
+            </VerticalStackLayout>
+        </Grid>
+        <!-- 3rd Row: List of Buttons -->
+        <ScrollView Grid.Row="3" Orientation="Horizontal" x:Name="PitchingPlay_ButtonGroup"
+                    >
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                <Button Text="Ball" Clicked="ButtonBall_Clicked" WidthRequest="90" HeightRequest="50" 
+                        Margin="10,0,0,0" />
+                <Button Text="Strike" Clicked="ButtonStrike_Clicked"  WidthRequest="90" HeightRequest="50" 
+                        Margin="5,0,0,0" />
+                <Button Text="Foul" Clicked="ButtonFoul_Clicked"  WidthRequest="90" HeightRequest="50" 
+                        Margin="5,0,0,0" />
+                <Button Text="Insult Ref" Clicked="ButtonInsult_Clicked"  WidthRequest="90" HeightRequest="50" 
+                        Margin="5,0,0,0" />
+            </StackLayout>
+        </ScrollView>
+        <ScrollView Grid.Row="3" Orientation="Horizontal" x:Name="InfieldPlay_ButtonGroup">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <Button Text="End Play" Clicked="ButtonEndOfPlay_Clicked" WidthRequest="90" HeightRequest="50" 
+                        Margin="10,0,0,0" />
+            </StackLayout>
+        </ScrollView>
+        <!-- Gesture Recognizer -->
+        <!-- Gesture Recognizer on the Grid -->
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnPageTapped" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</ContentPage>

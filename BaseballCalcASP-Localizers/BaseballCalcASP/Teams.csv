@@ -1,0 +1,31 @@
+﻿Id,Name,TotalPlayers,MLB_Org_ID,VenueName,LeagueName,NameDisplayBrief,City,FranchiseCode,Deleted
+108,Los Angeles Angels,0,108,Angel Stadium,AL,Angels,Anaheim,LAA,0
+109,Arizona Diamondbacks,0,109,Chase Field,NL,D-backs,Phoenix,ARI,0
+110,Baltimore Orioles,0,110,Oriole Park at Camden Yards,AL,Orioles,Baltimore,MLA,0
+111,Boston Red Sox,0,111,Fenway Park,AL,Red Sox,Boston,BOS,0
+112,Chicago Cubs,0,112,Wrigley Field,NL,Cubs,Chicago,CH2,0
+113,Cincinnati Reds,0,113,Great American Ball Park,NL,Reds,Cincinnati,CN2,0
+114,Cleveland Guardians,0,114,Progressive Field,AL,Guardians,Cleveland,CLE,0
+115,Colorado Rockies,0,115,Coors Field,NL,Rockies,Denver,COL,0
+116,Detroit Tigers,0,116,Comerica Park,AL,Tigers,Detroit,DET,0
+117,Houston Astros,0,117,Minute Maid Park,AL,Astros,Houston,HOU,0
+118,Kansas City Royals,0,118,Kauffman Stadium,AL,Royals,Kansas City,KCA,0
+119,Los Angeles Dodgers,0,119,Dodger Stadium,NL,Dodgers,Los Angeles,BR3,0
+120,Washington Nationals,0,120,Nationals Park,NL,Nationals,Washington,MON,0
+121,New York Mets,0,121,Citi Field,NL,Mets,Flushing,NYN,0
+133,Oakland Athletics,0,133,Oakland Coliseum,AL,Athletics,Oakland,PHA,0
+134,Pittsburgh Pirates,0,134,PNC Park,NL,Pirates,Pittsburgh,PT1,0
+135,San Diego Padres,0,135,Petco Park,NL,Padres,San Diego,SDN,0
+136,Seattle Mariners,0,136,T-Mobile Park,AL,Mariners,Seattle,SEA,0
+137,San Francisco Giants,0,137,Oracle Park,NL,Giants,San Francisco,TRN,0
+138,St. Louis Cardinals,0,138,Busch Stadium,NL,Cardinals,St. Louis,SL4,0
+139,Tampa Bay Rays,0,139,Tropicana Field,AL,Rays,St. Petersburg,TBA,0
+140,Texas Rangers,0,140,Globe Life Field,AL,Rangers,Arlington,WS2,0
+141,Toronto Blue Jays,0,141,Rogers Centre,AL,Blue Jays,Toronto,TOR,0
+142,Minnesota Twins,0,142,Target Field,AL,Twins,Minneapolis,WS1,0
+143,Philadelphia Phillies,0,143,Citizens Bank Park,NL,Phillies,Philadelphia,WOR,0
+144,Atlanta Braves,0,144,Truist Park,NL,Braves,Atlanta,BS1,0
+145,Chicago White Sox,0,145,Guaranteed Rate Field,AL,White Sox,Chicago,CHA,0
+146,Miami Marlins,0,146,loanDepot park,NL,Marlins,Miami,FLO,0
+147,New York Yankees,0,147,Yankee Stadium,AL,Yankees,Bronx,BLA,0
+158,Milwaukee Brewers,0,158,American Family Field,NL,Brewers,Milwaukee,SE1,0

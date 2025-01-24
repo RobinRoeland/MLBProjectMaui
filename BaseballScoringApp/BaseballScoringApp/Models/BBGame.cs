@@ -34,14 +34,18 @@ namespace BaseballScoringApp.Models
             BBPlayer awaypitcher = mAwayTeam.getPlayer(AwayStartingPitcherId);
 
             mHomeTeam.mTeamColor = Colors.LemonChiffon;
-            mAwayTeam.mTeamColor= Colors.IndianRed;
+            mAwayTeam.mTeamColor = Color.FromArgb("#74cff7");
 
             mGameProgress.mHomeTeam.mCurrentlyPitching = homepitcher;
             mGameProgress.mAwayTeam.mCurrentlyPitching = awaypitcher;
 
-            //
+            Finished = false;
+
             SoundManager snd = SoundManager.getInstance();
             snd.PlaySound("mp3/playball.mp3");
+
+            mHomeTeam.debugDumpLineUp();
+            mAwayTeam.debugDumpLineUp();
         }
         public void DoAction(IGameAction game_action)
         {
@@ -50,6 +54,7 @@ namespace BaseballScoringApp.Models
         public void IncreasePitchCount()
         {
             // top of the inning is altijd het home team
+            mGameProgress.mTotalPitchCount++;
             if (mGameProgress.mCurrentSideInning == InningSide.Top)
                 mGameProgress.mHomeTeam.TotalPitches++;
             else 
@@ -67,11 +72,20 @@ namespace BaseballScoringApp.Models
         {
             return mGameProgress.popMessage();
         }
-        public void BallGame()
+        public async Task BallGame(BBDataRepository repo)
         {
+            Finished = true;
             mGameProgress.BallGame();
-            
+
+            RunsHomeTeam = mGameProgress.mHomeTeam.Runs;
+            RunsAwayTeam = mGameProgress.mAwayTeam.Runs;
+            HitsHomeTeam = mGameProgress.mHomeTeam.Hits;
+            HitsAwayTeam = mGameProgress.mAwayTeam.Hits;
+            ErrorsHomeTeam = mGameProgress.mHomeTeam.Errors;
+            ErrorsAwayTeam = mGameProgress.mAwayTeam.Errors;
+
             //update end of game in db
+            await repo.sendGameUpdate();
         }
 
     }

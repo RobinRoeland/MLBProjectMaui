@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BaseballScoringApp.Views.StatisticSelectionMenu"
+             Title="Statistics Menu">
+    <VerticalStackLayout>
+        <Border Stroke="Transparent" Padding="10">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ToggleExpandCommand}"/>
+            </Border.GestureRecognizers>
+            <Label Text="Player Information"/>
+        </Border>
+        <CollectionView x:Name="MenuItems"
+                    IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Border Stroke="Transparent"
+                        Padding="10">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PlayerInfoCommand}"/>
+                        </Border.GestureRecognizers>
+
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Name}" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"/>
+                            <Label Text="{Binding IsExpanded, Converter={StaticResource BoolToArrowConverter}}"
+                               Margin="5,0,0,0"
+                               VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout IsVisible="{Binding Parent.IsExpanded}">
+                        <Button Text="{Binding Name}"
+                            Command="{Binding Command}"
+                            Margin="20,5,5,5"
+                            HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

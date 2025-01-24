@@ -36,6 +36,7 @@ namespace BaseballScoringApp.Models
             SoundManager sm = SoundManager.getInstance();
             sm.PlaySound("mp3/heisout.mp3");
             gpr.mScoreManager.registerScore("CaughtStealing", playerInvolved, 1);
+            gpr.mScoreManager.registerScore("Out", playerInvolved, 1);
         }
     }
 }

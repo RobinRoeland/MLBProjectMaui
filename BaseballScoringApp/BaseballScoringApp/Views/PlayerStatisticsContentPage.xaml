@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BaseballScoringApp.ViewModels"
+             x:Class="BaseballScoringApp.PlayerStatisticsContentPage"
+             Title="PlayerStatisticsContentPage"
+             Appearing="OnPageAppearing">
+    <ContentPage.BindingContext>
+        <viewmodels:PlayerStatisticsContentPageViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout >
+        <StackLayout>
+            <ImageButton Grid.Column="1"
+                Source="{Binding Headshot}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="Center"
+                Margin="0,0,0,0"/>
+        </StackLayout>
+        <StackLayout Padding="20">
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="PLayerName"  Text="Naam:" FontAttributes="Bold" WidthRequest="120"/>
+                <Label Text="{Binding Player.Name}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Rugnummer:" FontAttributes="Bold" WidthRequest="120"/>
+                <Label Text="{Binding Player.Rugnummer, TargetNullValue='N/A'}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Positie:" FontAttributes="Bold" WidthRequest="120"/>
+                <Label Text="{Binding Player.Position, TargetNullValue='N/A'}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Ploeg:" FontAttributes="Bold" WidthRequest="120"/>
+                <Label Text="{Binding Player.Team.Name, TargetNullValue='N/A'}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Padding="20" >
+            <CollectionView x:Name="PlayerStatList" ItemsSource="{Binding Statistics}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="Black" Padding="4">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Layout_Clicked"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="{Binding StatisticsName}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <Label Text="{Binding StatisticsValue}" VerticalOptions="Center"/>
+                                <CollectionView x:Name="StatDetailList" Margin="20,0,0,0">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                                <Label Text="{Binding StatisticsName}" VerticalOptions="Center"/>
+                                                <Label Text="{Binding StatisticsValue}" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

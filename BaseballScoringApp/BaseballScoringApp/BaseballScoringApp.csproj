@@ -74,43 +74,42 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="MainPageLogin.xaml.cs">
+	  <Compile Update="Views\MainPageLogin.xaml.cs">
 	    <DependentUpon>MainPageLogin.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="ScoringContentPage.xaml.cs">
+	  <Compile Update="Views\ScoringContentPage.xaml.cs">
 	    <DependentUpon>ScoringContentPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="DynamicButtonActionList.xaml">
+	  <MauiXaml Update="Views\DynamicButtonActionList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="EndBallGameContentPage.xaml">
+	  <MauiXaml Update="Views\EndBallGameContentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="GameScoringNotLoggedOn.xaml">
+	  <MauiXaml Update="Views\GameScoringNotLoggedOn.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="GameStartContentPage.xaml">
+	  <MauiXaml Update="Views\GameStartContentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="PlayerSelectionContentPage.xaml">
+	  <MauiXaml Update="Views\PlayerSelectionContentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="PlayerStatisticsContentPage.xaml">
+	  <MauiXaml Update="Views\PlayerStatisticsContentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="PopupDialog_ShowBoard.xaml">
+	  <MauiXaml Update="Views\PopupDialog_ShowBoard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TestPage.xaml">
+	  <MauiXaml Update="Views\TestPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Views\" />
+	  <MauiXaml Update="Views\StatisticSelectionMenu.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

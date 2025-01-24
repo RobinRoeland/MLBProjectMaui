@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using BaseballCalcASP.Utils;
+using CsvHelper.Configuration;
+using CsvHelper;
 
 namespace BaseballCalcASP.Data
 {
@@ -80,6 +83,7 @@ namespace BaseballCalcASP.Data
             this.SeedPlayers(modelBuilder);
             this.SeedSeasons(modelBuilder);
             this.SeedGames(modelBuilder);
+            this.SeedStatistics(modelBuilder);
         }
 
         private void SeedRoles(ModelBuilder modelBuilder)
@@ -171,102 +175,102 @@ namespace BaseballCalcASP.Data
         private void SeedTeams(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Team>().HasData(
-            new Team
+                new Team { Id = 108, Name = "Los Angeles Angels", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 109, Name = "Arizona Diamondbacks", TotalPlayers = 36, Deleted = false },
+                new Team { Id = 110, Name = "Baltimore Orioles", TotalPlayers = 39, Deleted = false },
+                new Team { Id = 111, Name = "Boston Red Sox", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 112, Name = "Chicago Cubs", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 113, Name = "Cincinnati Reds", TotalPlayers = 38, Deleted = false },
+                new Team { Id = 114, Name = "Cleveland Guardians", TotalPlayers = 39, Deleted = false },
+                new Team { Id = 115, Name = "Colorado Rockies", TotalPlayers = 39, Deleted = false },
+                new Team { Id = 116, Name = "Detroit Tigers", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 117, Name = "Houston Astros", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 118, Name = "Kansas City Royals", TotalPlayers = 38, Deleted = false },
+                new Team { Id = 119, Name = "Los Angeles Dodgers", TotalPlayers = 39, Deleted = false },
+                new Team { Id = 120, Name = "Washington Nationals", TotalPlayers = 37, Deleted = false },
+                new Team { Id = 121, Name = "New York Mets", TotalPlayers = 34, Deleted = false },
+                new Team { Id = 133, Name = "Oakland Athletics", TotalPlayers = 38, Deleted = false },
+                new Team { Id = 134, Name = "Pittsburgh Pirates", TotalPlayers = 36, Deleted = false },
+                new Team { Id = 135, Name = "San Diego Padres", TotalPlayers = 34, Deleted = false },
+                new Team { Id = 136, Name = "Seattle Mariners", TotalPlayers = 37, Deleted = false },
+                new Team { Id = 137, Name = "San Francisco Giants", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 138, Name = "St. Louis Cardinals", TotalPlayers = 38, Deleted = false },
+                new Team { Id = 139, Name = "Tampa Bay Rays", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 140, Name = "Texas Rangers", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 141, Name = "Toronto Blue Jays", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 142, Name = "Minnesota Twins", TotalPlayers = 38, Deleted = false },
+                new Team { Id = 143, Name = "Philadelphia Phillies", TotalPlayers = 39, Deleted = false },
+                new Team { Id = 144, Name = "Atlanta Braves", TotalPlayers = 38, Deleted = false },
+                new Team { Id = 145, Name = "Chicago White Sox", TotalPlayers = 39, Deleted = false },
+                new Team { Id = 146, Name = "Miami Marlins", TotalPlayers = 40, Deleted = false },
+                new Team { Id = 147, Name = "New York Yankees", TotalPlayers = 33, Deleted = false },
+                new Team { Id = 158, Name = "Milwaukee Brewers", TotalPlayers = 40, Deleted = false }
+            );
+        }
+
+        // Tijdelijke functie om seed data te genereren voor SeedPlayers
+        public void GeneratePlayerSeedData()
+        {
+            try
             {
-                Id = 1,
-				Name = "Waldos",
-                TotalPlayers = 2,
-                Deleted = false
-            },
-            new Team
+                string csvPath = Path.Combine(Directory.GetCurrentDirectory(), "players.csv");
+                if (!File.Exists(csvPath))
+                {
+                    Console.WriteLine($"CSV file not found at: {csvPath}");
+                    return;
+                }
+
+                string seedData = Utils.SeedDataGenerator.GeneratePlayerSeedData(csvPath);
+
+                // Write to a file in the project directory
+                string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "playerSeedData.txt");
+                File.WriteAllText(outputPath, seedData);
+
+                Console.WriteLine($"Seed data generated successfully and saved to: {outputPath}");
+                Console.WriteLine($"First few lines of generated data:");
+                Console.WriteLine(seedData.Split('\n').Take(5).Aggregate((a, b) => a + "\n" + b));
+            }
+            catch (Exception ex)
             {
-                Id = 2,
-				Name = "Bebops",
-                TotalPlayers = 2,
-                Deleted = false
-            },
-            new Team
-            {
-                Id = 3,
-				Name = "Foxes",
-                TotalPlayers = 2,
-                Deleted = false
-            },
-            new Team
-            {
-                Id = 4,
-				Name = "Kangeroos",
-                TotalPlayers = 1,
-                Deleted = false
-            });
+                Console.WriteLine($"Error generating seed data: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            }
         }
         private void SeedPlayers(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>().HasData(
-            new Player
+            string csvPath = Path.Combine(Directory.GetCurrentDirectory(), "players.csv");
+            if (!File.Exists(csvPath))
             {
-                Id = 1,
-                Name = "Waldo",
-				TeamId = 1,
-				DOB = DateTime.ParseExact("05-12-2004 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
+                Console.WriteLine($"CSV file not found at: {csvPath}");
+                return;
+            }
+
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                Id = 2,
-                Name = "Waldo2",
-				TeamId = 1,
-				DOB = DateTime.ParseExact("12-04-2004 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
+                HasHeaderRecord = true,
+                Delimiter = ",", // Adjust delimiter if necessary
+                MissingFieldFound = null,
+                HeaderValidated = null,
+                IgnoreBlankLines = true,
+                TrimOptions = TrimOptions.Trim
+            };
+
+            using var reader = new StreamReader(csvPath);
+            using var csv = new CsvReader(reader, config);
+            var records = csv.GetRecords<Player>().ToList();
+
+            // update DOB met een random datum tussen 1/1/2000 en 31/12/2006
+            DateTime startDate = new DateTime(2000, 1, 1);
+            DateTime endDate = new DateTime(2006, 12, 31);
+            int rangeDays = (endDate - startDate).Days;
+            var random = new Random();
+            foreach (var record in records)
             {
-                Id = 3,
-                Name = "Kangoeroe",
-				TeamId = 4,
-				DOB = DateTime.ParseExact("15-03-2003 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
-            {
-                Id = 4,
-                Name = "Test",
-				TeamId = 2,
-				DOB = DateTime.ParseExact("03-02-2006 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
-            {
-                Id = 5,
-                Name = "Test2",
-				TeamId = 2,
-				DOB = DateTime.ParseExact("27-08-2006 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
-            {
-                Id = 6,
-                Name = "A1",
-				TeamId = 2,
-				DOB = DateTime.ParseExact("04-03-2005 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
-            {
-                Id = 7,
-                Name = "A2",
-				TeamId = 3,
-				DOB = DateTime.ParseExact("02-07-2006 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            },
-            new Player
-            {
-                Id = 8,
-                Name = "A3",
-				TeamId = 3,
-				DOB = DateTime.ParseExact("04-12-2008 12:00 am", "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture),
-                Deleted = false
-            });
+                record.DOB = startDate.AddDays(random.Next(rangeDays));
+            }
+
+            // add records in Players tabel
+            modelBuilder.Entity<Player>().HasData(records);
         }
         private void SeedGames(ModelBuilder modelBuilder)
         {
@@ -274,14 +278,50 @@ namespace BaseballCalcASP.Data
             new Game
             {
                 Id = 1,
-                HomeTeamId = 1,
-                AwayTeamId = 4,
-                GameDate = "2008-12-04",
-                GameTime = "13:00",
-                HomeStartingPitcherId = 1,
-                AwayStartingPitcherId= 3
+                User = "admin@testemail.com",
+                HomeTeamId = 108,
+                AwayTeamId = 118,
+                GameDate = "2024-12-31",
+                GameTime = "00:00",
+                HomeStartingPitcherId = 543294,
+                AwayStartingPitcherId = 672582,
+                TotalInnings = 9,
+                ErrorsAwayTeam = 0,
+                ErrorsHomeTeam = 0,
+                Finished = true,
+                HitsAwayTeam = 4,
+                HitsHomeTeam = 3,
+                RunsAwayTeam = 0,
+                RunsHomeTeam = 1
             });
         }
+
+        private void SeedStatistics(ModelBuilder modelBuilder)
+        {
+            string csvPath = Path.Combine(Directory.GetCurrentDirectory(), "Statistics.csv");
+            if (!File.Exists(csvPath))
+            {
+                Console.WriteLine($"CSV file not found at: {csvPath}");
+                return;
+            }
+
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = true,
+                Delimiter = ",", // Adjust delimiter if necessary
+                MissingFieldFound = null,
+                HeaderValidated = null,
+                IgnoreBlankLines = true,
+                TrimOptions = TrimOptions.Trim
+            };
+
+            using var reader = new StreamReader(csvPath);
+            using var csv = new CsvReader(reader, config);
+            var records = csv.GetRecords<ScoreStatistic>().ToList();
+
+            modelBuilder.Entity<ScoreStatistic>().HasData(records);
+        }
+
         private void SeedSeasons(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Season>().HasData(

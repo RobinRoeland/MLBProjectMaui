@@ -1,21 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using BaseballCalcASP.Data;
 using Microsoft.AspNetCore.Identity;
 using BaseballCalcASP.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using GroupSacePrep.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using NETCore.MailKit.Infrastructure.Internal;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BaseballCalcASPContext>(options =>
@@ -124,19 +120,11 @@ builder.Services.AddAuthentication(options =>
 });
 
 /* adding this results in MAUI issues with APIControllers
-
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = options.DefaultPolicy;
 });*/
 
-/*builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-});*/
 
 // Add session support
 builder.Services.AddDistributedMemoryCache();
@@ -148,7 +136,19 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
- //app.UseCors("AllowAll");
+
+// --- Begin SeedDataGenerator ---
+// Dit is een call naar een tijdelijke SeedDataGenerator functie in de utils folder om Context.SeedPlayers()
+// op te vullen met alle MLB spelers.
+// Deze moet altijd in commentaar blijven tenzij er en nieuwe Players.csv file komt en de SeedPlayers
+// opnieuw gegenereerd moet worden.
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<BaseballCalcASPContext>();
+//    context.GeneratePlayerSeedData();
+//}
+// --- End SeedDataGenerator ---
+
 // Als er nog geen database is maar wel een bestaande migration, dan wordt de database hier automatisch aangemaakt
 using (var serviceScope = app.Services.CreateScope())
 {

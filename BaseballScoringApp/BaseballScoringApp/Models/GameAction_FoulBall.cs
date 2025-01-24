@@ -17,9 +17,12 @@ namespace BaseballScoringApp.Models
 
         public override void DoAction(BBGame forGame)
         {
+            SoundManager sm = SoundManager.getInstance();
+            sm.PlaySound("mp3/FoulBall.mp3");
+
             forGame.IncreasePitchCount();
-            if (forGame.mGameProgress.mStrikes < 2)
-                forGame.mGameProgress.mStrikes++;
+            if (forGame.mGameProgress.mStrikesForOutCounting < 2)
+                forGame.mGameProgress.mStrikesForOutCounting++;
             forGame.mGameProgress.mFouls++;
             forGame.mGameProgress.mScoreManager.registerScore("FoulBall", playerInvolved, 1);
         }

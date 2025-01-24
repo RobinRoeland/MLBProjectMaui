@@ -41,6 +41,21 @@ namespace BaseballCalcASP.APIControllers
             return Content(jsonString, "application/json");
         }
 
+        // GET: Teams
+        [HttpGet]
+        [Route("getteamcount")]
+        public async Task<ActionResult<int>> countTeamsInTable()
+        {
+            int count = 0;
+            if (_context.Teams != null)
+            {
+                count = _context.Teams.Count();
+            }
+            string jsonString = JsonConvert.SerializeObject(count, Formatting.Indented);
+            return Ok(jsonString);
+        }
+
+
         // POST: Teams - Accept JSON to add teams
         [HttpPost]
         [Route("addteams")]
@@ -55,6 +70,31 @@ namespace BaseballCalcASP.APIControllers
 
             try
             {
+                // delete all statistics
+                var statisticsToDelete = _context.Statistics.ToList();
+                if (statisticsToDelete.Count > 0)
+                {
+                    _context.Statistics.RemoveRange(statisticsToDelete);
+                }
+                // delete all games
+                var gamesToDelete = _context.Games.ToList();
+                if (gamesToDelete.Count > 0)
+                {
+                    _context.Games.RemoveRange(gamesToDelete);
+                }
+                // delete all players
+                var playersToDelete = _context.Players.ToList();
+                if (playersToDelete.Count > 0)
+                {
+                    _context.Players.RemoveRange(playersToDelete);
+                }
+                // delete all teams
+                var teamsToDelete = _context.Teams.ToList();
+                if (teamsToDelete.Count > 0)
+                {
+                    _context.Teams.RemoveRange(teamsToDelete);
+                }
+
                 // Add the deserialized teams to the database context
                 foreach (var team in teams)
                 {

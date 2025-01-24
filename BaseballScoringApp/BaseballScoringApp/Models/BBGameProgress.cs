@@ -27,7 +27,9 @@ namespace BaseballScoringApp.Models
         public int mStrikes;
         public int mFouls;
         public int mOuts;
+        public int mBaseOnBallsInInning;
 
+        public int mStrikesForOutCounting;
         public int mBattersInInning;
 
         public int mBallsInInning;
@@ -39,13 +41,19 @@ namespace BaseballScoringApp.Models
         public BBPlayer? mRunnerOn3rdBase;
         
         // if game mode is infield play, and bases are not free yet, batter goes to intermediate pos
-        public BBPlayer? mRunnerOnIntermediateWaitPosition; 
+        public BBPlayer? mRunnerOnIntermediateWaitPosition;
+        //is filled when in mode infield play, it contains the action of the batter
+        public GameAction_Hit_InFieldPlay? mInfieldPlayAction;
+
 
         public Stack<string> mMessagesToDisplayStack;
 
+        public int mTotalPitchCount;
         public ScoreManager mScoreManager; // collects all scores during inning half and publishes to server at end of inning
 
         public gameScoringMode mCurrentScoringMode; // used to track if pictching or infieldplay scoring
+        
+        public string mLastKnownDefensivePlay;// constantly updated from view : eg : "9-5-1"
         public BBGameProgress(BBGame parent)
         {
             mParent = parent;
@@ -57,14 +65,18 @@ namespace BaseballScoringApp.Models
             mRunnerOn2ndBase = null;
             mRunnerOn3rdBase = null;
             mRunnerOnIntermediateWaitPosition = null;
+            mInfieldPlayAction = null;
             mBallsInInning = 0;
             mStrikesInInning = 0;
+            mStrikesForOutCounting = 0;
             mFoulsInInning = 0;
             mBattersInInning = 0;
+            mBaseOnBallsInInning = 0;
             mMessagesToDisplayStack = new Stack<string>();
             mScoreManager = new ScoreManager();
             mScoreManager.setGameContext(parent);
-
+            mLastKnownDefensivePlay = "";
+            mTotalPitchCount= 0;
             mCurrentScoringMode = gameScoringMode.Pitching;
         }
 
@@ -85,11 +97,16 @@ namespace BaseballScoringApp.Models
             mRunnerOn2ndBase = null;
             mRunnerOn3rdBase = null;
             mRunnerOnIntermediateWaitPosition = null;
+            mInfieldPlayAction = null; 
             mBalls = 0;
             mStrikes = 0;
             mOuts = 0;
             mFouls = 0;
-            mBattersInInning = 1; // inning always starts at one as batter already selected
+            mStrikesForOutCounting = 0;
+            mBaseOnBallsInInning = 0;
+            mTotalPitchCount = 0;
+            mBattersInInning = 0; 
+            mLastKnownDefensivePlay = "";
             //generate a lineup
             home.GenerateLineUp_ForGame();
             away.GenerateLineUp_ForGame();
@@ -104,7 +121,9 @@ namespace BaseballScoringApp.Models
 
             //next batter from the lineup
             BBTeamGameStatus offseniveteam = getOffensiveTeam();
-            offseniveteam.MoveToNextBatterInLineUp();
+            // jur out offseniveteam.MoveToNextBatterInLineUp();
+            //this line will force picking a new batter in game 
+            offseniveteam.mCurrentBatter = null;
 
             addMessage("Batter Out !");
         }
@@ -136,26 +155,29 @@ namespace BaseballScoringApp.Models
             mStrikesInInning = mBallsInInning = mFoulsInInning = 0;
             mOuts = 0;
             mBalls = mStrikes = mFouls = 0;
-            mBattersInInning = 1; //always start at one as new batter already selected
-
+            mBattersInInning = 0;
+            mStrikesForOutCounting = 0;
+            mBaseOnBallsInInning = 0; // in inning
         }
         public void restartThePitchCount()
         {
             // add to totals of inning and then reset
             mBallsInInning += mBalls;
             mStrikesInInning += mStrikes;
-            mFoulsInInning += mFoulsInInning;
+            mFoulsInInning += mFouls;
 
             mBalls = 0;
             mStrikes = 0;
             mFouls = 0;
+            mStrikesForOutCounting = 0;
 
         }
         public async void FinishCurrentInning()
         {
             // add totals balls/strikes/fouls for pitcher
             BBPlayer currentpitcher = getCurrentPitcher();
-            mScoreManager.registerScore("BaseOnBalls", currentpitcher, mBallsInInning);
+            mScoreManager.registerScore("BaseOnBalls", currentpitcher, mBaseOnBallsInInning);
+            mScoreManager.registerScore("Balls", currentpitcher, mBallsInInning);
             mScoreManager.registerScore("Strikes", currentpitcher, mStrikesInInning);
             mScoreManager.registerScore("Fouls", currentpitcher, mFoulsInInning);
             mScoreManager.registerScore("BattersFaced", currentpitcher, mBattersInInning);
@@ -194,7 +216,7 @@ namespace BaseballScoringApp.Models
         {
             //function returns the state of the inning depending on the current outs
             //check outs
-            if (mOuts == 3)
+            if (mOuts >= 3)
             {
                 if (mCurrentInning == mParent.TotalInnings && mCurrentSideInning == InningSide.Bottom)
                 {
@@ -255,7 +277,7 @@ namespace BaseballScoringApp.Models
                 // a run scores
                 BBTeamGameStatus offsensiveteam = getOffensiveTeam();
                 offsensiveteam.addRunScoreToInning(mCurrentInning);
-                addMessage($"{mRunnerOn3rdBase.Name} ({mRunnerOn3rdBase.Rugnummer.ToString()})\nscores a run.");
+                addMessage($"{mRunnerOn3rdBase.GetShortDisplayString()}\nscores a run.");
 
                 //Add RBI scoring for batter
                 mScoreManager.registerScore("RBI", getCurrentBatter(), 1);
@@ -268,11 +290,19 @@ namespace BaseballScoringApp.Models
         {
             // what can happen to the batter
             actionList.Add(new GameAction_WalkBatter(getCurrentBatter(), "HitByPitch"));
+            actionList.Add(new GameAction_Hit_InFieldPlay(getCurrentBatter(), FieldPositions.batterbox, "Bunt"));
             actionList.Add(new GameAction_Hit_InFieldPlay(getCurrentBatter(), FieldPositions.firstbase, "Single"));
             actionList.Add(new GameAction_Hit_InFieldPlay(getCurrentBatter(), FieldPositions.secondbase, "Double"));
             actionList.Add(new GameAction_Hit_InFieldPlay(getCurrentBatter(), FieldPositions.thirdbase, "Triple"));
             actionList.Add(new GameAction_Hit_InFieldPlay(getCurrentBatter(), FieldPositions.homeplate, "Home Run!"));
-            actionList.Add(new GameAction_Hit_InFieldPlay(getCurrentBatter(), FieldPositions.homeplate, "Home Run!"));
+            if (runnersOnBase())
+            {
+                actionList.Add(new GameAction_Hit_OutMultiPlay(getCurrentBatter(), "DoublePlay", "Out, Double Play"));
+                if(getNumRunnersOnBase() >= 2)
+                    actionList.Add(new GameAction_Hit_OutMultiPlay(getCurrentBatter(), "TriplePlay", "Out, Triple Play"));
+                actionList.Add(new GameAction_SacrificeFly(getCurrentBatter()));
+                actionList.Add(new GameAction_SacrificeBunt(getCurrentBatter()));
+            }
         }
         public void addActionsForFirstBasePosition(List<IGameAction> actionList)
         {
@@ -335,6 +365,47 @@ namespace BaseballScoringApp.Models
                 actionList.Add(new GameAction_MoveToBase(mRunnerOn3rdBase, FieldPositions.thirdbase, FieldPositions.homeplate, "Scores a run"));
            }
         }
+        public void addActionsForCatcherPosition(List<IGameAction> actionList)
+        {
+            BBPlayer catcher = getDefendingTeam().mTeam.getPlayerTypeFromLineUp("C");
+            if (mCurrentScoringMode == gameScoringMode.Pitching)
+            {   //which actions are possible for the catcher in pitching mode
+                actionList.Add(new GameAction_PassedBall(catcher, "PassedBall"));                
+            }
+            if (mCurrentScoringMode == gameScoringMode.InFieldPlay)
+            {   //which actions are possible for the catcher in pitching mode
+                actionList.Add(new GameAction_Error(catcher, FieldPositions.catcher ,"Error"));
+            }
+        }
+        public void addActionsForPitcherPosition(List<IGameAction> actionList)
+        {
+            BBPlayer pitcher = getDefendingTeam().mCurrentlyPitching;
+            if (mCurrentScoringMode == gameScoringMode.Pitching)
+            {   //which actions are possible for the catcher in pitching mode
+                actionList.Add(new GameAction_Balk(pitcher, "Balk"));
+                actionList.Add(new GameAction_IntentionalWalk(pitcher, "Intentional Walk"));
+            }
+            if (mCurrentScoringMode == gameScoringMode.InFieldPlay)
+            {   //which actions are possible for the catcher in pitching mode
+                actionList.Add(new GameAction_Error(pitcher, FieldPositions.pitcher, "Error"));
+            }
+        }
+        public void addActionsForDefensePosition(List<IGameAction> actionList, FieldPositions position)
+        {
+            if (mCurrentScoringMode == gameScoringMode.InFieldPlay)
+            {   //which actions are possible for the runner on 3rd base in pitching mode
+                string poscode = translateFieldPositionToPositionName(position);
+                BBPlayer playerInAction = null;
+                if (position != FieldPositions.pitcher)
+                    playerInAction = getDefendingTeam().mTeam.getPlayerTypeFromLineUp(poscode);
+                else
+                {
+                    playerInAction = getDefendingTeam().mCurrentlyPitching;
+                }
+                actionList.Add(new GameAction_Error(playerInAction, position, "Error"));
+            }
+        }
+        
         public List<IGameAction> getPossibleGameActions(FieldPositions forPosition)
         {
             List<IGameAction> actionList = new List<IGameAction>();
@@ -342,7 +413,7 @@ namespace BaseballScoringApp.Models
             {
                 addActionsForPlayerBattingPosition(actionList);
             }
-            if (forPosition == FieldPositions.runnerOn1st)
+            else if (forPosition == FieldPositions.runnerOn1st)
             {
                 addActionsForFirstBasePosition(actionList);
             }
@@ -354,7 +425,33 @@ namespace BaseballScoringApp.Models
             {
                 addActionsFor3rdBasePosition(actionList);
             }
+            else if (forPosition == FieldPositions.catcher)
+            {
+                addActionsForCatcherPosition(actionList);
+            }
+            else if (forPosition == FieldPositions.pitcher)
+            {
+                addActionsForPitcherPosition(actionList);
+            }
+            else if (forPosition == FieldPositions.firstbase || forPosition == FieldPositions.secondbase
+                || forPosition == FieldPositions.thirdbase || forPosition == FieldPositions.shortstop || forPosition == FieldPositions.leftfield
+                || forPosition == FieldPositions.centerfield || forPosition == FieldPositions.rightfield)
+                addActionsForDefensePosition(actionList, forPosition);
             return actionList;
+        }
+        public string translateFieldPositionToPositionName(FieldPositions position)
+        {
+            string positioncode = "";
+            if (position == FieldPositions.catcher) positioncode = "C";
+            else if (position == FieldPositions.pitcher) positioncode = "P";
+            else if (position == FieldPositions.firstbase) positioncode = "1B";
+            else if (position == FieldPositions.secondbase) positioncode = "2B";
+            else if (position == FieldPositions.thirdbase) positioncode = "3B";
+            else if (position == FieldPositions.shortstop) positioncode = "SS";
+            else if (position == FieldPositions.leftfield) positioncode = "LF";
+            else if (position == FieldPositions.centerfield) positioncode = "CF";
+            else if (position == FieldPositions.rightfield) positioncode = "RF";
+            return positioncode;
         }
         public void addMessage(string msgToShow)
         {
@@ -368,7 +465,59 @@ namespace BaseballScoringApp.Models
         {
             return mMessagesToDisplayStack.Pop();
         }
+        public bool runnersOnBase()
+        {
+            return (mRunnerOn1thBase != null || mRunnerOn2ndBase != null || mRunnerOn3rdBase!= null);
+        }
+        public int getNumRunnersOnBase()
+        {
+            int onbase = 0;
+            if (mRunnerOn1thBase != null)
+                onbase++;
+            if (mRunnerOn2ndBase != null)
+                onbase++;
+            if (mRunnerOn3rdBase!= null)
+                onbase++;
+            return onbase;
+        }
+        public void EndInfieldPlay()
+        {
+            //if a defensive play was selected, add it to the scores attached to the currentpitch count
+            mScoreManager.updateScoreAtPitchCountForDefensivePlay(mTotalPitchCount,mLastKnownDefensivePlay);
 
+            //back to pitching mode
+            mCurrentScoringMode = gameScoringMode.Pitching;
+            mRunnerOnIntermediateWaitPosition = null;
+            mInfieldPlayAction = null;
+        }
+        public void tryToMoveIntermediateRunnerToDestination()
+        {
+            //game action contains his last infield action
+            if(mCurrentScoringMode == gameScoringMode.InFieldPlay && mRunnerOnIntermediateWaitPosition != null)
+            {
+                if(mInfieldPlayAction.mHitAndRunToBase == FieldPositions.firstbase &&
+                    mRunnerOn1thBase == null)
+                {
+                    //single and can move
+                    mRunnerOn1thBase = mRunnerOnIntermediateWaitPosition;
+                    mRunnerOnIntermediateWaitPosition = null;
+                }
+                else if (mInfieldPlayAction.mHitAndRunToBase == FieldPositions.secondbase &&
+                    mRunnerOn1thBase == null && mRunnerOn2ndBase == null)
+                {
+                    //double and can move
+                    mRunnerOn2ndBase = mRunnerOnIntermediateWaitPosition;
+                    mRunnerOnIntermediateWaitPosition = null;
+                }
+                else if (mInfieldPlayAction.mHitAndRunToBase == FieldPositions.thirdbase&&
+                    runnersOnBase() == false)
+                {
+                    //double and can move
+                    mRunnerOn3rdBase= mRunnerOnIntermediateWaitPosition;
+                    mRunnerOnIntermediateWaitPosition = null;
+                }
+            }
+        }
 
     }
 }

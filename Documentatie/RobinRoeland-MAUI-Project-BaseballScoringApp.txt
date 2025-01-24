@@ -1,0 +1,68 @@
+Initiatiefnemer: 
+
+Robin Roeland
+
+Werknaam : 
+
+BaseballScoringApp
+
+Korte omschrijving:
+
+Zoals tijdens vorige les afgesproken, ga ik mijn MAUI project bouwen op basis van mijn bestaande project van .NET Frameworks "BaseballCalcASP Project"
+Het bestaande project is een API met bijhorende schermen om teams, spelers, statistieken in te voeren met een achterliggende database en API functies/controllers voor de data interfaces.
+Ik zal dit project verder uitbreiden om wedstrijden en het wedstrijdverloop van een baseball game te kunnen registreren en achterliggend verdere statistieken te genereren.
+Qua functionaliteit houdt dit in: statistieken berekenen op basis van de informatie die je per wedstrijd ingeeft over prestaties van spelers van meerdere teams gedurende het spelverloop, ook wel 'scoring' genoemd.
+Deze statistieken helpen om te bepalen in welke prestaties een speler echt uitblinkt gedurende het verloop van meerdere wedstrijden of een seizoen.
+
+Motivatie:
+
+Ik speel zelf baseball en de bestaande tools missen bepaalde dingen die toch noodzakelijk zijn om een beter inzicht te krijgen in de sterke punten van een speler.
+Bovendien wil ik een baseball scoring app maken die niet alleen op de MLB ploegen gebaseerd is maar die ook toelaat om van de eigen teams in Belgie scoring van wedstrijden te doen.
+De mogelijkheid om 1 app te maken die zowel op IOS, Android en Windows bruikbaar is vind ik een interessant framework die een grote afzetmarkt kan betekenen voor Apps die ik in de toekomst kan maken.
+
+Uitgebreidere omschrijving:
+
+De Baseball scoring app zal gebruikers toelaten om gedurende een baseball wedstrijd het wedstrijdverloop vast te leggen volgens een algemeen gekende "scoring" procedure.  Deze scoring wordt via 
+afkortingen en code taal opgeslagen in een wedstrijdverloop over 9 innings die elke beweging van spelers op het veld registreren. Met behulp van deze scoring kan eenieder die de wedstrijd niet gezien
+heeft het hele wedstrijdverloop reconstrueren. Dit soort informatie wordt vooral door coaches gebruikt om hun spelers na de wedstrijd te evalueren.
+De App zal enerzijds de wedstrijdverlopen opslaan en anderzijds de statistieken leveren die de coach gebruikt bij de evaluatie van zijn spelers.
+
+Scoring is behoorlijk complex en het is niet de bedoeling om alle situaties en wedstrijd voorvallen meteen te implementeren.
+De bedoeling is om binnen het tijdsbestek van dit project, een soort van proof of concept the maken die het spelverloop, het basisconcept en de functionaliteiten van opslag van spelsituaties kan vast leggen via de server side API-calls.
+Dit kan dan de basis vormen om later uit te breiden naar een volledige scoring app die alle spel situaties kan behandelen.
+
+De administratie zoals team-beheer en speler-beheer wordt gedaan op pc in de server applicatie. Dit heb ik reeds uitgewerkt in mijn bestaand project van .NET Advanced en kan hergebruikt worden als basis.
+Het spreekt voor zich dat de bestaande API functionaliteit zal uitgebreid worden met de database tabellen en api's die nodig zijn om de scoring te kunnen bijhouden in een meer gedetailleerd formaat.
+
+De MAUI app zal 2 delen omvatten.
+- Een wedstrijd scoring deel.
+- Een statistieken deel.
+
+Data wordt opgehaald via API calls die achterliggend met de SQL Server database communiceren.
+
+De pages die bij de verschillende delen zullen horen zullen als volgt zijn:
+
+Startscherm:
+	- MainContentPage: Het startscherm toont een logo van de app en de titel en geeft de mogelijkheid om in te loggen.
+	  Ik heb nog niet de definitieve keuze gemaakt om een navigatie balk te gebruiken of een lijst met knoppen om de keuze te maken naar welk deel je wil navigeren.
+	  Vanuit het startscherm kan je kiezen voor het scoring deel of het statistieken deel.
+
+Scoring deel:
+	- GameStartContentPage : Na betreden van scoring module start een scherm waarbij de gebruiker de 2 teams moet kiezen die het tegen elkaar opnemen, de wedstrijddatum en uur. Hier wordt ook de selectie gemaakt met een carousselview van de starting pitcher.
+      Om geen ganse wedstrijd te moeten scoren om te testen is ook een slider control voorzien om het aantal innings te kiezen en zo slecht een paar innings per match te hoeven ingeven bij demo.
+	  De gegevens van teams, spelers, spelerposities worden opgehaald via de API.
+	- ScoringContentPage : De app houdt het wedstrijdverloop bij en loodst de gebruiker door de innings van het spel. In baseball het je 3 outs voor het wisselen van inning.
+	  Het basis scoring scherm concentreert zich op het pitchen (gooien), en toont de posities van de aanvallende spelers (bases). Met knoppen kan je Ball of strikes scoren, foul play en infield hits.
+	  Indien je een speler op een base hebt, dan kan je ook op de speler klikken en bewegingen scoren die de speler maakt. Dus van dit scherm kan je naar het infieldPlayContentPage scherm bij infield hit.
+	- infieldPlayContentPage : Hier komen meer specifieke acties van een infield hit. Na een infield hit zijn meerdere scorings mogelijk zoals een out met een defense combinatie van verschillende verdedigers
+	  op basis van hun gooigedrag (bvb Out 8-4-1). Je kan ook de positie van de bal aangeven en wat er met de speler gebeurt (bvb : move to 2nd base). Na de infield scoring gaat het scherm terug naar de main  ScoringContentPage
+	- Bij een click op een aanvallende speler op base in de score ScoringContentPage krijg je een dialog te zien met knoppen waaruit de actie kan ingevoerd worden (bvb : steal base, out, ...)
+	- EndGameContentPage : Op het einde van de wedstrijd wordt een scherm getoond dat het spel voorbij is en wordt de eindscore getoond. Een knop brengt je terug naar de MainContentPage.
+
+	Elke scoring invoer wordt meteen naar de API gestuurd en opgeslagen in de gamePlay tabellen (uitbreiding van de API)
+
+Statistieken deel:
+	- PlayerSelectionContentPage : Hier kies je een team en een speler in dat team in een list collection view. na keuze van de speler navigeer je naar de PlayerStatisticsContentPage
+	  In deze pagina kunnen spelers gesorteerd worden en is er een search optie
+	- PlayerStatisticsContentPage : Op basis van de gekozen speler worden zijn statistieken opgehaald via de api en aan de gebruiker gepresenteerd per scoring onderdeel.
+	

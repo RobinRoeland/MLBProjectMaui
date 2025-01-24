@@ -25,18 +25,21 @@ namespace BaseballScoringApp.Models
                     gpr.mOuts++;
                     gpr.mRunnerOn1thBase = null;
                     gpr.addMessage($"{playerInvolved.Name} ({playerInvolved.Rugnummer.ToString()})\nOut on 1st base.");
+                    gpr.mScoreManager.registerScore("Out", playerInvolved, 1);
                 }
                 else if (gpr.mRunnerOn2ndBase== playerInvolved)
                 {
                     gpr.mOuts++;
                     gpr.mRunnerOn2ndBase= null;
                     gpr.addMessage($"{playerInvolved.Name} ({playerInvolved.Rugnummer.ToString()})\nOut on 2nd base.");
+                    gpr.mScoreManager.registerScore("Out", playerInvolved, 1);
                 }
                 else if (gpr.mRunnerOn3rdBase== playerInvolved)
                 {
                     gpr.mOuts++;
                     gpr.mRunnerOn3rdBase= null;
                     gpr.addMessage($"{playerInvolved.Name} ({playerInvolved.Rugnummer.ToString()})\nOut on 3rd base.");
+                    gpr.mScoreManager.registerScore("Out", playerInvolved, 1);
                 }
                 //todo add scoring if needed
             }

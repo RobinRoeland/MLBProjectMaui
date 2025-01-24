@@ -14,6 +14,9 @@ namespace BaseballModelsLib.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
+        [Required]
+        public string User{ get; set; }
+
         [DisplayFormat(NullDisplayText = "N/A")]
         [Required]
         public int HomeTeamId { get; set; }
@@ -35,9 +38,19 @@ namespace BaseballModelsLib.Models
 
         public int TotalInnings { get; set; }
 
+        // when game is finished fill:
+        public bool Finished { get; set; }
+        public int RunsHomeTeam { get; set; }
+        public int RunsAwayTeam { get; set; }
+        public int HitsHomeTeam { get; set; }
+        public int HitsAwayTeam { get; set; }
+        public int ErrorsHomeTeam { get; set; }
+        public int ErrorsAwayTeam { get; set; }
+
         public Game()
         {
             TotalInnings = 9;
+            Finished = false;
         }
     }
 }

@@ -45,6 +45,7 @@ namespace BaseballScoringApp
             builder.Services.AddSingleton<IAudioManager, AudioManager>();
             // Register ScoringContentPage for dependency injection (passing audiomanager in constructor)...
             builder.Services.AddTransient<ScoringContentPage>();
+            builder.Services.AddTransient<EndBallGameContentPage>();
 
             var app = builder.Build();
 

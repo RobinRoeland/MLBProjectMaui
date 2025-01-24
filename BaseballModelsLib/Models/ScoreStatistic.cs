@@ -11,6 +11,7 @@ namespace BaseballModelsLib.Models
         public string ScoreName { get; set; } = "";
         public float ScoreValue { get; set; } = 0.0f;
         public string DefensivePlay { get; set; } = "";
+        public int AtPitchCount{ get; set; } = 0;
 
         // Primary key properties
         [Required]
@@ -37,6 +38,7 @@ namespace BaseballModelsLib.Models
             Inning = 0;
             InningTop = 1; // 0 is top, 1 is bottom
             ScoreIdInInning = 0;
+            AtPitchCount = 0;
         }
     }
 }

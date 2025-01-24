@@ -36,6 +36,12 @@ namespace BaseballScoringApp.Models
             else
             {
                 //run scores
+                gpr.getOffensiveTeam().addRunScoreToInning(gpr.mCurrentInning);
+                gpr.mScoreManager.registerScore("Runs", playerInvolved, 1);
+                gpr.addMessage($"{playerInvolved.GetShortDisplayString()}\nScores.");
+                //add RBI for the batter
+                BBPlayer batter = gpr.getOffensiveTeam().getCurrentBatter();
+                gpr.mScoreManager.registerScore("RBI", batter, 1);
             }
             //remove form old pos on field
             if (mFromBase == FieldPositions.firstbase)
@@ -44,6 +50,9 @@ namespace BaseballScoringApp.Models
                 gpr.mRunnerOn2ndBase = null;
             else if (mFromBase == FieldPositions.thirdbase)
                 gpr.mRunnerOn3rdBase = null;
+
+            SoundManager sm = SoundManager.getInstance();
+            sm.PlaySound("mp3/slidebase.mp3");
 
         }
     };

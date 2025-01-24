@@ -28,7 +28,7 @@ namespace BaseballScoringApp.Models
                     }
                 case 2:
                     {
-                        sm.PlaySound("mp3/BallOne.mp3"); break;
+                        sm.PlaySound("mp3/BallTwo.mp3"); break;
                     }
                 case 3:
                     {

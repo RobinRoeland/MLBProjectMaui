@@ -19,9 +19,10 @@ namespace BaseballScoringApp.ViewModels
         private string _imageBatterUrl;
         private string _imagePitcherUrl;
 
+
         public ScoringContentPageViewModel()
         {
-            mRepo = BBDataRepository.getInstance(); 
+            mRepo = BBDataRepository.getInstance();
         }
 
         public void OnPropertyChanged([CallerMemberName] string name = "") =>

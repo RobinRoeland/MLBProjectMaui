@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,6 +133,28 @@ namespace BaseballScoringApp.Models
                  return mLineUpByPositionDict[position];
             }
             return null;
+        }
+        public void debugDumpLineUp()
+        {
+            int i = 0;
+            Debug.WriteLine("Line Up : " + Name);
+
+            foreach (BBPlayer pl in mLineUpList)
+            {
+                i++;
+                Debug.WriteLine($"\t{i} : {pl.GetDebugDisplayString()}");
+            }
+
+
+        }
+        public BBPlayer getRandomPitcher()
+        {
+            if (mPitchers.Count == 0)
+                return null;
+
+            //pick a random player playing at this position, a team can have eg multiple 1B players
+            var random = new Random();
+            return mPitchers[random.Next(mPitchers.Count)];
         }
     }
 }

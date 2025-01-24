@@ -1,0 +1,20 @@
+Cleane startup
+
+Drop DB via Microsoft SQL Server Management Studio
+
+Migrations folder leegmaken
+
+Menu View - Terminal
+
+in terminal:
+
+ga naar BasballCalcASP folder
+	cd BaseballCalcASP
+
+Start migrations
+	dotnet-ef migrations add InitialDBSetup
+
+Start db-update
+	dotnet-ef database update
+
+Start BaseballCalcASP

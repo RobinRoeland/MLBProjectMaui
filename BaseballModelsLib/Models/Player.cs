@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BaseballModelsLib.Models
 {
@@ -33,8 +34,11 @@ namespace BaseballModelsLib.Models
 
         public bool Deleted { get; set; } = false;
 
+        [JsonIgnore]
         [DisplayName("Ploeg")]
+        [NotMapped]
         public Team? Team { get; set; }
+
         public Player()
         {
             Name = "";

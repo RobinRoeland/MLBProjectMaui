@@ -75,11 +75,6 @@ namespace BaseballScoringApp.Services
 
             // Redirect to login page (you can set this in App.xaml.cs as part of your navigation logic)
             Application.Current.MainPage = new NavigationPage(new MainPageLogin());
-            // Ensure the login page is a modal
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await (Application.Current.MainPage as NavigationPage).Navigation.PushModalAsync(new MainPageLogin());
-            });
         }
     }
 }

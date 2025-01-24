@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BaseballScoringApp.EndBallGameContentPage"
+             Title="Ball Game !">
+    <ContentPage.Content>
+        <Grid>
+            <VerticalStackLayout
+                    Grid.Row="0"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Spacing="10">
+                <!-- Home Team -->
+                <Label x:Name="HomeTeamNameLabel"
+                   FontSize="30"
+                    FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center" 
+                   Padding="0,0,0,20"/>
+                <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                    <Image x:Name="HomeTeamLogo"
+                       WidthRequest="100"
+                       HeightRequest="100" />
+                    <!-- Vertical Line -->
+                    <BoxView BackgroundColor="Black"
+                             Margin="40,0,40,0"                       
+                        WidthRequest="2"
+                        VerticalOptions="FillAndExpand" />
+                    <Frame BackgroundColor="White"
+                       BorderColor="Black"
+                       CornerRadius="5"
+                       WidthRequest="100"
+                       HeightRequest="90"
+                       Padding="5"
+                       VerticalOptions="Center">
+                        <Label x:Name="HomeTeamScoreLabel"
+                           FontSize="55"
+                           TextColor="Black"
+                               VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center" />
+                    </Frame>
+                </HorizontalStackLayout>
+
+                <Label Text="VS"
+                   FontSize="24"
+                   TextColor="Gray"
+                   Margin="0,50,0,50"
+                   HorizontalTextAlignment="Center" />
+
+                <!-- Away Team -->
+                <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                    <Image x:Name="AwayTeamLogo"
+                       WidthRequest="100"
+                       HeightRequest="100" />
+                    <!-- Vertical Line -->
+                    <BoxView BackgroundColor="Black"
+                             Margin="40,0,40,0"                       
+                        WidthRequest="2"
+                        VerticalOptions="FillAndExpand" />
+                    <Frame BackgroundColor="White"
+                       BorderColor="Black"
+                       CornerRadius="5"
+                       WidthRequest="100"
+                       HeightRequest="90"
+                       Padding="5"
+                       VerticalOptions="Center">
+                        <Label x:Name="AwayTeamScoreLabel"
+                           FontSize="55"
+                           TextColor="Black"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center" />
+                    </Frame>
+                </HorizontalStackLayout>
+                <Label x:Name="AwayTeamNameLabel"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                       Padding="0,20,0,0"
+                   HorizontalTextAlignment="Center" />
+                <!-- Spacer for layout alignment -->
+                <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+
+                <Button Text="End Game"
+                    Grid.Row="1"
+                    FontSize="18"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    Style="{StaticResource ButtonStyle}"
+                    Margin="10"
+                    Clicked="OnEndGameButtonClicked" />
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

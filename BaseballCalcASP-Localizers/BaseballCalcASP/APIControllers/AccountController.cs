@@ -6,12 +6,19 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Runtime.CompilerServices;
+using NuGet.Configuration;
+
+// added [assembly] to allow the login-view (in Areas\Identity\Pages\Account to use CreateJwtToken from the AccountController
+//  also changed the CreateJwtToken function from private to internal
+[assembly: InternalsVisibleTo("LoginModel")]
 
 namespace BaseballCalcASP.APIControllers
 {
     [ApiController]
     [Route("api/[controller]")]
     //[Route("api/Account")]
+
     public class AccountController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
@@ -39,7 +46,6 @@ namespace BaseballCalcASP.APIControllers
 
             // Validate the password
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
-            //var result = await _signInManager.PasswordSignInAsync("admin@testemail.com", "Start123#", false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 // Create a JWT token
@@ -52,7 +58,8 @@ namespace BaseballCalcASP.APIControllers
             // Return a specific error if the password is incorrect
             return Ok(new { isAuthenticated = false, message = "Invalid password" });
         }
-        private string CreateJwtToken(AppUser user)
+
+        internal string CreateJwtToken(AppUser user)
         {
             var claims = new[]
             {
@@ -60,6 +67,7 @@ namespace BaseballCalcASP.APIControllers
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
+            //get the Key, Issuer and Audience from appsettings.json
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(

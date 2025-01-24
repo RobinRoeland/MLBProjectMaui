@@ -34,7 +34,6 @@ namespace BaseballScoringApp.ViewModels
         }
 
         private List<BBTeam> _teams;
-        private BBTeam _selectedTeam;
 
         private List<BBPlayer> _players;
 
@@ -48,6 +47,7 @@ namespace BaseballScoringApp.ViewModels
             }
         }
 
+        private BBTeam _selectedTeam;
         public BBTeam SelectedTeam
         {
             get => _selectedTeam;
@@ -77,7 +77,7 @@ namespace BaseballScoringApp.ViewModels
         {
             mRepo = BBDataRepository.getInstance();
             TeamList = mRepo.mTeamsList;
-            SelectedTeam = mRepo.mTeamsList.First();
+            SelectedTeam = mRepo.mTeamsList.Where(t => t.Id == 145).First();
             PlayerList = new List<BBPlayer>(); // Initialize the filtered players list
             UpdateFilters();
         }
@@ -99,6 +99,34 @@ namespace BaseballScoringApp.ViewModels
             }
         }
 
+        private async Task<string> ValidateImageUrl(string url)
+        {
+            if (!await IsImageReachable(url))
+            {
+                return "defaultplayerimg.png"; // Path to a local image if the URL is invalid
+            }
+            return url;
+        }
+        public async Task SetValidatedImageUrl(string url, Image imageview)
+        {
+            url = await ValidateImageUrl(url);
+            imageview.Source = url;
+        }
+
+        private async Task<bool> IsImageReachable(string url)
+        {
+            //Checks if a given URL can be reached (used to check if img is present online)
+            try
+            {
+                using var client = new HttpClient();
+                var response = await client.GetAsync(url);
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         private void UpdateFilteredPlayers()
         {
             if (SelectedTeam != null)

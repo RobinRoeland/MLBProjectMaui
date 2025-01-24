@@ -56,7 +56,10 @@ namespace BaseballCalcASP.APIControllers
                 return NotFound();
             }
 
-            //            player.Team = _context.Teams.Find(player.TeamId);
+            if (player.TeamId != null)
+            {
+                player.Team = _context.Teams.Find(player.TeamId);
+            }
 
             // Ok function automatically serializes player object to JSON
             //return Ok(player);
@@ -64,13 +67,13 @@ namespace BaseballCalcASP.APIControllers
             return Content(jsonString, "application/json");
         }
 
-        // POST: Teams - Accept JSON to add a list of players
+        // POST: Players - Accept JSON to add a list of players
         [HttpPost]
         [Route("addplayers")]
-        public async Task<IActionResult> AddTeams([FromBody] List<Player> players)
+        public async Task<IActionResult> AddPlayers([FromBody] List<Player> players)
         {
-            // The[FromBody] List<Team> parameter tells ASP.NET Core to automatically deserialize the JSON payload into a List < Team > object.
-            // the json is automatically converted on receipt to List<Team>, no need to deserialize here
+            // The[FromBody] List<Team> parameter tells ASP.NET Core to automatically deserialize the JSON payload into a List < Player > object.
+            // the json is automatically converted on receipt to List<Player>, no need to deserialize here
             if (players == null || players.Count == 0)
             {
                 return BadRequest("No players found in the payload.");
@@ -78,6 +81,12 @@ namespace BaseballCalcASP.APIControllers
 
             try
             {
+                int? teamid = players[0].TeamId;
+                var playersOfSameTeamToDelete = _context.Players.Where(s => s.TeamId == teamid).ToList();
+                if (playersOfSameTeamToDelete.Count > 0)
+                {
+                    _context.Players.RemoveRange(playersOfSameTeamToDelete);
+                }
                 // Add the deserialized teams to the database context
                 foreach (var player in players)
                 {

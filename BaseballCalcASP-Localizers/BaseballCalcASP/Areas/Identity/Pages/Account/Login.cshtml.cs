@@ -8,12 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BaseballCalcASP.Models;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Configuration;
+using BaseballCalcASP.APIControllers;
+using BaseballCalcASP.Data;
 
 namespace BaseballCalcASP.Areas.Identity.Pages.Account
 {
@@ -24,12 +20,15 @@ namespace BaseballCalcASP.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly IConfiguration _configuration;
 
-        public LoginModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ILogger<LoginModel> logger, IConfiguration configuration)
+        private readonly AccountController _accountController;
+
+        public LoginModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ILogger<LoginModel> logger, IConfiguration configuration, BaseballCalcASPContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _configuration = configuration;
+            _accountController = new AccountController(context, signInManager, userManager, configuration);
         }
 
         /// <summary>
@@ -127,7 +126,7 @@ namespace BaseballCalcASP.Areas.Identity.Pages.Account
                     }
 
                     // Create a JWT token
-                    var token = CreateJwtToken(user);
+                    var token = _accountController.CreateJwtToken(user);
 
                     // Store the token in session
                     HttpContext.Session.SetString("JwtToken", token);
@@ -153,25 +152,6 @@ namespace BaseballCalcASP.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
-        }
-        private string CreateJwtToken(AppUser user)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:Issuer"],
-                audience: _configuration["JWT:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

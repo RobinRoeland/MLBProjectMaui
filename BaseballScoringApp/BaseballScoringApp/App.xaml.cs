@@ -12,8 +12,6 @@ namespace BaseballScoringApp
         public App(ILogger<App> plogger)
         {
             InitializeComponent();
-            if (!Globals.loggedIn)
-                JwtService.DeleteTokenAsync();
 
             _logger = plogger;
             //outputs to Output window MSVC
@@ -21,7 +19,7 @@ namespace BaseballScoringApp
             Globals.logger = _logger;
 
             // Set a default MainPage immediately
-            MainPage = new NavigationPage(new MainPageLogin());
+            MainPage = new AppShell();
 
             // Check if a valid token exists at app startup
             CheckTokenValidity();
